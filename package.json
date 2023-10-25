@@ -14,6 +14,7 @@
     "less": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
@@ -24,8 +25,11 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.0.3",
     "terser": "^5.22.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
