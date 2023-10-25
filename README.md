@@ -1,7 +1,7 @@
 <h1 align="center">Front-end Repo</h1>
 <div align="center">
   <h3>人工智能与智慧学习湖北省重点实验室网页前端</h3>
-  <a href="https://github.com/BlackishGreen33/Codetest"><strong>探索项目文档 »</strong></a>
+  <a href="https://github.com/Hubei-KL-AI-IL/Front-end"><strong>探索项目文档 »</strong></a>
   <br />
   <br />
   
