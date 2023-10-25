@@ -1,27 +1,49 @@
-# React + TypeScript + Vite
+<h1 align="center">Front-end Repo</h1>
+<div align="center">
+  <h3>人工智能与智慧学习湖北省重点实验室网页前端</h3>
+  <a href="https://github.com/BlackishGreen33/Codetest"><strong>探索项目文档 »</strong></a>
+  <br />
+  <br />
+  
+  ![license](https://img.shields.io/github/license/Hubei-KL-AI-IL/Front-end)
+  ![language](https://img.shields.io/github/languages/top/Hubei-KL-AI-IL/Front-end)
+  ![last](https://img.shields.io/github/last-commit/Hubei-KL-AI-IL/Front-end)
+  
+  <a href="#" target="_blank">在线体验</a>
+  ·
+  <a href="https://github.com/Hubei-KL-AI-IL/Front-end/issues">报告Bug</a>
+  ·
+  <a href="https://github.com/Hubei-KL-AI-IL/Front-end/issues">提出新特性</a>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔖 项目导览
 
-Currently, two official plugins are available:
+### ✨ 提交规范
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎉 init：项目初始化
+- ✨ feat：新增功能（feature）
+- 🐞 fix：修复bug
+- 📃 docs：文档修改
+- 🌈 style：代码样式修改，不影响原代码逻辑
+- ✅ test：测试相关的改动
+- 🔨 refactor：代码重构
+- 🔧 chore：建制过程或辅助工具的变动
 
-## Expanding the ESLint configuration
+### 🎯 相容环境
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- 现代浏览器（Chrome >= 64, Edge >= 79, Firefox >= 78, Safari >= 12）
 
-- Configure the top-level `parserOptions` property like this:
+### 💻 本地调试
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+$ git https://github.com/Hubei-KL-AI-IL/Front-end.git
+$ cd Front-end
+$ pnpm install
+$ pnpm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 📝 授权
+
+上述文件皆以 MIT 许可授权
+
+> 详细之授权请参考 [LICENSE](LICENSE) 文件
