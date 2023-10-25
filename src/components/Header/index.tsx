@@ -7,7 +7,7 @@ import Logo from "@/assets/logo.png";
 import { menus, menuChildren } from "@/utils/helpers";
 import { slideUpOut } from "@/animations";
 
-type HeaderProps = {};
+type HeaderProps = object;
 
 const Header: React.FC<HeaderProps> = () => {
   return (

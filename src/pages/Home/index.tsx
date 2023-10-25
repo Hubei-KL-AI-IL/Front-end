@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Header } from '../../components';
 
-type HomeProps = {};
+type HomeProps = object;
 
 const Home: React.FC<HomeProps> = () => {
   return (
