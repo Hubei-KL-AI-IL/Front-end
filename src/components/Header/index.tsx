@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import "./style.less";
-import Logo from "../../assets/logo.png";
-import { menus, menuChildren } from "../../utils/helpers";
-import { slideUpOut } from "../../animations";
+import Logo from "@/assets/logo.png";
+import { menus, menuChildren } from "@/utils/helpers";
+import { slideUpOut } from "@/animations";
 
 type HeaderProps = {};
 
