@@ -1,0 +1,139 @@
+header {
+  width: 100%;
+  position: fixed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.top_banner {
+  width: 100%;
+  height: 10vh;
+  background: #00849a;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu_button {
+  display: none;
+}
+
+.logo {
+  width: auto;
+  height: 6vh;
+  position: relative;
+  left: 18vw;
+}
+
+.subname {
+  color: white;
+  font-size: 2.5vh;
+  position: relative;
+  left: 19.5vw;
+}
+
+nav {
+  width: 100%;
+  height: 5vh;
+  background: rgba(0, 132, 154, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.1vw;
+}
+
+.navbar_choice {
+  height: 5vh;
+  padding: 0 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  color: white;
+  position: relative;
+  transition: all 0.3s linear;
+}
+.navbar_choice::before {
+  content: "";
+  width: 100%;
+  height: 0;
+  background-color: rgba(0, 132, 154, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+nav li:hover .navbar_choice:hover::before {
+  top: unset;
+  bottom: 0;
+  height: 100%;
+}
+.navbar_choice_clicked {
+  background-color: rgba(0, 132, 154, 0.7);
+}
+
+.navbar_choice_name {
+  font-weight: bold;
+}
+
+.dropdown_list {
+  position: absolute;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.dropdown_list_content {
+  list-style: none;
+  width: 6vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1vw;
+  background-color: rgba(0, 132, 154, 0.5);
+}
+
+.dropdown_list a:hover .dropdown_list_content {
+  background-color: rgba(0, 132, 154, 0.7);
+}
+
+@media screen and (max-width: 1200px) {
+  .logo {
+    width: auto;
+    height: 5vh;
+    left: 2vw;
+  }
+  .subname {
+    font-size: 2vh;
+    left: 4vw;
+  }
+  .menu_button {
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-size: 35px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1.5vw;
+  }
+  // nav {
+  //   display: none;
+  // }
+}
