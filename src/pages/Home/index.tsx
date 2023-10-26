@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { Header } from '@/components';
+import { Header, Carousel } from '@/components';
 
-type HomeProps = object;
+type HomeProps = {};
 
 const Home: React.FC<HomeProps> = () => {
   return (
     <>
       <Header />
+      <main>
+        <Carousel />
+      </main>
     </>
   );
 };
