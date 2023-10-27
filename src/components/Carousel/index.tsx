@@ -36,9 +36,13 @@ const Carousel: React.FC<CarouselProps> = () => {
 
   const handleControlClick = (index: number) => {
     setActiveSlide(index);
+    setShowDescription(false);
+    setTimeout(() => {
+      setShowDescription(true);
+    }, 300);
   };
 
-  const handleClick = () => {
+  const handleScrollClick = () => {
     window.scrollTo({
       top: window.innerHeight * 0.85,
       behavior: 'smooth',
@@ -105,8 +109,8 @@ const Carousel: React.FC<CarouselProps> = () => {
         </motion.div>
         <div className='controls-visible'>{renderControlLabels()}</div>
       </div>
-      <div className='scroll_button' onClick={handleClick}>
-          <motion.img {...driftImg} src={scroll_button} alt='向下滚动按钮' />
+      <div className='scroll_button' onClick={handleScrollClick}>
+        <motion.img {...driftImg} src={scroll_button} alt='向下滚动按钮' />
       </div>
     </section>
   );
