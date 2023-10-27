@@ -1,0 +1,78 @@
+@import '@/style/global.less';
+
+.topdiv{
+    position: relative;
+    top: 10vh;
+    height: 30vh;
+    width: 100vw;
+    z-index: -1;
+    background-position: 0 -20vh;
+    background-color: @primary-color-4;
+    background-image:url(../../assets/topbg.jpg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.aside{
+    float: left;
+    margin-top: 2vh;
+    margin-left: 7vw;
+    margin-right: 2vw;
+}
+
+.aside .h{
+    background-color: @primary-color-7;
+    width: 18vw;
+    height: 8vh;
+    font-size: 2vw;
+    color: white;
+    line-height: 8vh;
+    display: flex;
+    align-items: center;
+}
+.aside .h h4{
+    display: inline-block;
+}
+
+.aside .h img{
+    height: 4.5vw;
+}
+
+
+.menu li{
+    list-style: none;
+    padding-left: 2vw;
+    border-left:5px solid #d0cece;
+    height: 7vh;
+    font-size: 1.3vw;
+    background-color: @primary-color-1;
+    line-height: 7vh;
+    color: @primary-color;
+}
+
+.active{
+    background-color: white !important;
+    border-left:5px solid @primary-color-4 !important;
+}
+
+.menu li:hover{
+    background-color: @primary-color-2;
+}
+
+.content{
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    min-height: 60vh;
+    margin-top: 10vh;
+    margin-left: 12.5vh;
+}
+
+.station{
+    background-color: #f3f4fa;
+    padding:1vh;
+
+}
+
+a{
+    text-decoration: none;
+}
