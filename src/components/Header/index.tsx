@@ -4,22 +4,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { AiFillCaretLeft } from 'react-icons/ai';
 
 import './style.less';
-import Logo from '@/assets/logo.png';
+import { Logo } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 import { slideUpOut } from '@/animations';
 
-type HeaderProps = object;
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   return (
     <header>
-      <section className='top_banner'>
-        <motion.div whileTap={{ scale: 0.9 }} className='menu_button'>
-          &#9776;
-        </motion.div>
-        <img className='logo' src={Logo} alt='Logo' />
-        <p className='subname'>人工智能与智慧学习湖北省重点实验室</p>
-      </section>
+      <TopBanner />
       <section>
         <nav>
           <ul>
@@ -30,10 +22,26 @@ const Header: React.FC<HeaderProps> = () => {
     </header>
   );
 };
-export default Header;
+
+const TopBanner = () => {
+  return (
+    <section className='top_banner'>
+      <motion.div whileTap={{ scale: 0.9 }} className='menu_button'>
+        &#9776;
+      </motion.div>
+      <img className='logo' src={Logo} alt='Logo' />
+      <p className='subname'>人工智能与智慧学习湖北省重点实验室</p>
+      <img
+        className='ccnu_gate'
+        src='http://cs.ccnu.edu.cn/images/header_top.png'
+        alt='ccnu_gate'
+      />
+    </section>
+  );
+};
 
 const Navigation = () => {
-  const [menuStates, setMenuStates] = useState<{ [key: string]: boolean }>({});
+  const [menuStates, setMenuStates] = useState<{ [key: number]: boolean }>({});
 
   const showMenuChildren = (menuIndex: number) => {
     setMenuStates((prevMenuStates) => ({
@@ -56,46 +64,51 @@ const Navigation = () => {
     }));
   };
 
-  return (
-    <>
-      {menus.map((menu) => (
-        <li key={menu.id}>
-          <Link to={menu.uri}>
+  const renderSubMenu = (menuIndex: number) => {
+    const filteredChildren = menuChildren.filter(
+      (child) => child.index === menuIndex,
+    );
+
+    return filteredChildren.map((child) => (
+      <Link key={child.index} to={child.uri}>
+        <motion.div whileTap={{ scale: 1.2 }} className='dropdown_list_content'>
+          <p className='dropdown_list_name'>{child.name}</p>
+          <AiFillCaretLeft className='AiFillCaretLeft' />
+        </motion.div>
+      </Link>
+    ));
+  };
+
+  const renderMenu = () => {
+    return menus.map((menu) => (
+      <li key={menu.id}>
+        <Link to={menu.uri}>
+          <motion.div
+            onMouseEnter={() => showMenuChildren(menu.index)}
+            onMouseLeave={() => hideMenuChildren(menu.index)}
+            whileTap={{ scale: 1.2 }}
+            className={`navbar_choice ${menuStates[menu.index] ? 'highlight' : ''}`}
+          >
+            <p className='navbar_choice_name'>{menu.name}</p>
+          </motion.div>
+        </Link>
+        <AnimatePresence>
+          {menuStates[menu.index] && (
             <motion.div
-              onMouseEnter={() => showMenuChildren(menu.index)}
-              onMouseLeave={() => hideMenuChildren(menu.index)}
-              whileTap={{ scale: 1.2 }}
-              className='navbar_choice'
+              {...slideUpOut}
+              className='dropdown_list'
+              onMouseEnter={() => handleSubMenuHover(menu.index, true)}
+              onMouseLeave={() => handleSubMenuHover(menu.index, false)}
             >
-              <p className='navbar_choice_name'>{menu.name}</p>
+              {renderSubMenu(menu.index)}
             </motion.div>
-          </Link>
-          <AnimatePresence>
-            {menuStates[String(menu.index)] && (
-              <motion.div
-                {...slideUpOut}
-                className='dropdown_list'
-                onMouseEnter={() => handleSubMenuHover(menu.index, true)}
-                onMouseLeave={() => handleSubMenuHover(menu.index, false)}
-              >
-                {menuChildren
-                  .filter((child) => child.index === menu.index)
-                  .map((child) => (
-                    <Link key={child.index} to={child.uri}>
-                      <motion.div
-                        whileTap={{ scale: 1.2 }}
-                        className='dropdown_list_content'
-                      >
-                        <p className='dropdown_list_name'>{child.name}</p>
-                        <AiFillCaretLeft className='AiFillCaretLeft' />
-                      </motion.div>
-                    </Link>
-                  ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </li>
-      ))}
-    </>
-  );
+          )}
+        </AnimatePresence>
+      </li>
+    ));
+  };
+
+  return <>{renderMenu()}</>;
 };
+
+export default Header;

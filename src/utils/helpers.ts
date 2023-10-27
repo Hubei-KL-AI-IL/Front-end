@@ -1,4 +1,4 @@
-export type Menus = {
+export type Menu = {
   id: string;
   index: number;
   haveChildren: boolean;
@@ -13,7 +13,7 @@ export type MenuChildren = {
   uri: string;
 };
 
-export const menus: Menus[] = [
+export const menus: Menu[] = [
   {
     id: crypto.randomUUID(),
     index: 1,
@@ -96,4 +96,10 @@ export const menuChildren: MenuChildren[] = [
   { id: crypto.randomUUID(), index: 7, name: '学术交流', uri: '/info?menu=7&menuchild=0' },
   { id: crypto.randomUUID(), index: 7, name: '对外开放', uri: '/info?menu=7&menuchild=1' },
   { id: crypto.randomUUID(), index: 7, name: '开放基金', uri: '/info?menu=7&menuchild=2' },
+];
+
+export const heroDescriptions: string[] = [
+  "南湖图书馆",
+  "喷水池",
+  "华师一百二十周年"
 ];
