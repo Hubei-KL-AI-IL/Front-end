@@ -76,11 +76,12 @@ const Carousel: React.FC<CarouselProps> = () => {
 
   const renderControlLabels = () => {
     return Array.from({ length: 3 }).map((_, index) => (
-      <label
+      <motion.label
+        whileTap={{ scale: 0.9 }}
         key={index}
         htmlFor={`control-${index + 1}`}
         className={activeSlide === index ? 'active' : ''}
-        onClick={() => handleControlClick(index)}></label>
+        onClick={() => handleControlClick(index)}></motion.label>
     ));
   };
 
@@ -91,7 +92,7 @@ const Carousel: React.FC<CarouselProps> = () => {
       <div className='triangle'></div>
       <AnimatePresence>
         <motion.div
-          whileTap={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
           className='hero_description_container'>
           {showDescription && (
             <motion.p {...slideInText} className='hero_description'>
@@ -109,9 +110,12 @@ const Carousel: React.FC<CarouselProps> = () => {
         </motion.div>
         <div className='controls-visible'>{renderControlLabels()}</div>
       </div>
-      <div className='scroll_button' onClick={handleScrollClick}>
+      <motion.div
+        whileTap={{ scale: 1.2 }}
+        className='scroll_button'
+        onClick={handleScrollClick}>
         <motion.img {...driftImg} src={scroll_button} alt='向下滚动按钮' />
-      </div>
+      </motion.div>
     </section>
   );
 };
