@@ -9,3 +9,9 @@ export const slideInText = {
   animate: { x: 0, opacity: 1 },
   transition: { duration: 1 },
 };
+
+export const driftImg = {
+  initial: { translateY: '5%' },
+  animate: { translateY: ['5%', '-2%', '5%'] },
+  transition: { duration: 1, repeat: Infinity, ease: 'linear' },
+};

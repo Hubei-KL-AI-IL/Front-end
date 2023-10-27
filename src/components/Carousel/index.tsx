@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BiPlayCircle, BiStopCircle } from 'react-icons/bi';
 
-import { Hero1, Hero2, Hero3 } from '@/assets';
+import { Hero1, Hero2, Hero3, scroll_button } from '@/assets';
 import { heroDescriptions } from '@/utils/helpers';
-import { slideInText } from '@/animations';
+import { slideInText, driftImg } from '@/animations';
 import './style.less';
 
 type CarouselProps = object;
@@ -36,6 +36,13 @@ const Carousel: React.FC<CarouselProps> = () => {
 
   const handleControlClick = (index: number) => {
     setActiveSlide(index);
+  };
+
+  const handleClick = () => {
+    window.scrollTo({
+      top: window.innerHeight * 0.85,
+      behavior: 'smooth',
+    });
   };
 
   const renderInputs = () => {
@@ -97,6 +104,9 @@ const Carousel: React.FC<CarouselProps> = () => {
           {!autoPlay ? <BiPlayCircle /> : <BiStopCircle />}
         </motion.div>
         <div className='controls-visible'>{renderControlLabels()}</div>
+      </div>
+      <div className='scroll_button' onClick={handleClick}>
+          <motion.img {...driftImg} src={scroll_button} alt='向下滚动按钮' />
       </div>
     </section>
   );
