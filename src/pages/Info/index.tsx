@@ -38,7 +38,7 @@ const Info: React.FC<InfoProps> = () => {
               ? list.map((each, index) => {
                   return (
                     <a href={each.uri}>
-                      <li key={each.id} className={index == a ? 'active' : ''}>
+                      <li key={each.id} className={index == a ? 'activeList' : ''}>
                         {each.name}
                       </li>
                     </a>
