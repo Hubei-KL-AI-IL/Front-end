@@ -7,7 +7,7 @@ header {
   z-index: 9999;
 }
 
-.top_banner {
+header .top_banner {
   width: 100%;
   height: 10vh;
   background: @primary-color;
@@ -16,18 +16,18 @@ header {
   position: relative;
 }
 
-.menu_button {
+header .menu_button {
   display: none;
 }
 
-.logo {
+header .logo {
   width: auto;
   height: 6vh;
   position: relative;
   left: 18vw;
 }
 
-.subname {
+header .subname {
   color: white;
   font-size: 2.5vh;
   font-weight: bold;
@@ -35,7 +35,7 @@ header {
   left: 19.5vw;
 }
 
-.ccnu_gate {
+header .ccnu_gate {
   width: 40vw;
   height: inherit;
   position: absolute;
@@ -43,7 +43,7 @@ header {
   filter: invert(25%);
 }
 
-nav {
+header nav {
   width: 100%;
   height: 5vh;
   background: @primary-color-1;
@@ -54,23 +54,23 @@ nav {
   align-items: center;
 }
 
-nav ul {
+header nav ul {
   height: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-nav li {
+header nav li {
   display: inline;
 }
 
-nav a {
+header nav a {
   text-decoration: none;
   font-size: 1.1vw;
 }
 
-.navbar_choice {
+header .navbar_choice {
   height: 5vh;
   padding: 0 2vw;
   display: flex;
@@ -81,7 +81,7 @@ nav a {
   position: relative;
   transition: all 0.3s linear;
 }
-.navbar_choice::before {
+header .navbar_choice::before {
   content: '';
   width: 100%;
   height: 0;
@@ -92,32 +92,32 @@ nav a {
   transition: all 0.3s ease-in-out;
   z-index: -1;
 }
-nav li:hover .navbar_choice:hover::before {
+header nav li:hover .navbar_choice:hover::before {
   top: unset;
   bottom: 0;
   height: 100%;
 }
-.navbar_choice_clicked {
+header .navbar_choice_clicked {
   background-color: @primary-color-7;
 }
 
-.highlight::before {
+header .highlight::before {
   top: unset;
   bottom: 0;
   height: 100%;
 }
 
-.navbar_choice_name {
+header .navbar_choice_name {
   font-weight: bold;
 }
 
-.dropdown_list {
+header .dropdown_list {
   position: absolute;
   box-shadow: 0 4px 12px @box-shadow;
   display: block;
 }
 
-.dropdown_list_content {
+header .dropdown_list_content {
   list-style: none;
   width: 9vw;
   height: 5vh;
@@ -129,15 +129,15 @@ nav li:hover .navbar_choice:hover::before {
   background-color: @primary-color-3;
 }
 
-.dropdown_list a:hover .dropdown_list_content {
+header .dropdown_list a:hover .dropdown_list_content {
   background-color: @secondary-color-7;
 }
 
-.AiFillCaretLeft {
+header .AiFillCaretLeft {
   display: none;
 }
 
-.dropdown_list_content:hover .AiFillCaretLeft {
+header .dropdown_list_content:hover .AiFillCaretLeft {
   display: block;
 }
 
@@ -146,16 +146,16 @@ nav li:hover .navbar_choice:hover::before {
 }
 
 @media screen and (orientation: portrait) {
-  .logo {
+  header .logo {
     width: auto;
     height: 5vh;
     left: 2vw;
   }
-  .subname {
+  header .subname {
     font-size: 2vh;
     left: 4vw;
   }
-  .menu_button {
+  header .menu_button {
     display: block;
     background-color: transparent;
     color: white;
@@ -165,7 +165,7 @@ nav li:hover .navbar_choice:hover::before {
     position: absolute;
     right: 1.5vw;
   }
-  nav {
+  header nav {
     display: none;
   }
 }

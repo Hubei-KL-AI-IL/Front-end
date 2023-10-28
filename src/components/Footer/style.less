@@ -1,0 +1,158 @@
+@import '@/style/global.less';
+
+footer {
+  width: 100%;
+  height: 45vh;
+  background: @primary-color-b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+footer .logo {
+  height: 8vh;
+  margin: 5vh 0;
+}
+
+footer nav {
+  height: 8vh;
+}
+
+footer nav ul li {
+  display: inline;
+  margin: 0 2vw;
+  color: white;
+  font-size: 1.1vw;
+  font-weight: bold;
+}
+
+footer nav ul li:hover {
+  text-decoration: underline;
+}
+
+footer .lab_info {
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  left: 8vw;
+}
+
+footer .lab_info_container {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer .right_p {
+  color: white;
+  text-align: right;
+  font-size: 1vw;
+}
+
+.info_button {
+  border-bottom: 1px solid white;
+}
+
+.info_button img {
+  padding: 0 1vw 0.5vw 0;
+  width: 2.5vw;
+  height: 2.5vw;
+  cursor: pointer;
+}
+
+.friend_link {
+  display: flex;
+}
+
+.friend_link p {
+  padding: 0.5vw 1vw 0.5vw 1vw;
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.friend_link p a{
+	color: white;
+}
+
+.friend_link p:nth-child(1) {
+  padding-left: 0;
+  border-right: 1px solid white;
+}
+
+.friend_link p:nth-child(2) {
+  border-right: 1px solid white;
+}
+
+.copyright {
+  color: white;
+  font-size: 1vw;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    height: 70vh;
+  }
+  footer nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+  }
+  footer nav ul li {
+    font-size: 3vw;
+  }
+  footer .lab_info {
+    flex-direction: column;
+    left: 0;
+    align-items: center;
+  }
+  footer .lab_info_container {
+    height: 10vh;
+  }
+
+  footer .right_p {
+    width: 90vw;
+    padding: 6vh 0 4vh 0;
+    text-align: center;
+    font-size: 1.7vh;
+  }
+
+  .info_button {
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: center;
+  }
+
+  .info_button img {
+    padding: 0 3vw 3vw 0;
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .lab_info_container2 {
+    width: 90vw;
+    display: flex;
+    align-items: center;
+  }
+
+  .friend_link {
+    margin-top: 2vh;
+    justify-content: center;
+  }
+
+  .friend_link p {
+    padding: 0 5vw 0 5vw;
+    font-size: 2vw;
+  }
+
+  .copyright {
+    margin-top: 2vh;
+    color: white;
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (orientation: portrait) {
+}

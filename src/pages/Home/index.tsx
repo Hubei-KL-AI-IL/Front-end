@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Header, Carousel } from '@/components';
+import { Header, Carousel, Footer } from '@/components';
 import './style.less';
 
-type HomeProps = {};
+type HomeProps = object;
 
 const Home: React.FC<HomeProps> = () => {
   return (
@@ -13,6 +13,7 @@ const Home: React.FC<HomeProps> = () => {
         <Carousel />
         <div className='just_a_space_for_test'></div>
       </main>
+      <Footer />
     </>
   );
 };

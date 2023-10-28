@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { Header } from '@/components';
+import { Footer, Header } from '@/components';
 import { Icon } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 import './style.less';
@@ -38,7 +38,9 @@ const Info: React.FC<InfoProps> = () => {
               ? list.map((each, index) => {
                   return (
                     <a href={each.uri}>
-                      <li key={each.id} className={index == a ? 'activeList' : ''}>
+                      <li
+                        key={each.id}
+                        className={index == a ? 'activeList' : ''}>
                         {each.name}
                       </li>
                     </a>
@@ -61,6 +63,7 @@ const Info: React.FC<InfoProps> = () => {
           </p>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

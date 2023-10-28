@@ -8,7 +8,9 @@ import { Logo } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 import { slideUpOut } from '@/animations';
 
-const Header: React.FC = () => {
+type HeaderProps = object;
+
+const Header: React.FC<HeaderProps> = () => {
   return (
     <header>
       <TopBanner />
@@ -29,8 +31,12 @@ const TopBanner = () => {
       <motion.div whileTap={{ scale: 0.9 }} className='menu_button'>
         &#9776;
       </motion.div>
-      <img className='logo' src={Logo} alt='Logo' />
-      <p className='subname'>人工智能与智慧学习湖北省重点实验室</p>
+      <Link to='/index.html'>
+        <img className='logo' src={Logo} alt='Logo' />
+      </Link>
+      <Link to='/index.html'>
+        <p className='subname'>人工智能与智慧学习湖北省重点实验室</p>
+      </Link>
       <img
         className='ccnu_gate'
         src='http://cs.ccnu.edu.cn/images/header_top.png'
@@ -87,8 +93,9 @@ const Navigation = () => {
             onMouseEnter={() => showMenuChildren(menu.index)}
             onMouseLeave={() => hideMenuChildren(menu.index)}
             whileTap={{ scale: 1.2 }}
-            className={`navbar_choice ${menuStates[menu.index] ? 'highlight' : ''}`}
-          >
+            className={`navbar_choice ${
+              menuStates[menu.index] ? 'highlight' : ''
+            }`}>
             <p className='navbar_choice_name'>{menu.name}</p>
           </motion.div>
         </Link>
@@ -98,8 +105,7 @@ const Navigation = () => {
               {...slideUpOut}
               className='dropdown_list'
               onMouseEnter={() => handleSubMenuHover(menu.index, true)}
-              onMouseLeave={() => handleSubMenuHover(menu.index, false)}
-            >
+              onMouseLeave={() => handleSubMenuHover(menu.index, false)}>
               {renderSubMenu(menu.index)}
             </motion.div>
           )}

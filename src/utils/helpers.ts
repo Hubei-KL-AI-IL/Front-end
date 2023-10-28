@@ -19,7 +19,7 @@ export const menus: Menu[] = [
     index: 1,
     haveChildren: false,
     name: '首页',
-    uri: '/home',
+    uri: '/index.html',
   },
   {
     id: crypto.randomUUID(),
