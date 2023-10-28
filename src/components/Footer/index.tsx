@@ -6,22 +6,24 @@ import './style.less';
 import { Logo } from '@/assets';
 import { menus } from '@/utils/helpers';
 
-type indexProps = object;
+type FooterProps = object;
 
-const index: React.FC<indexProps> = () => {
+const Footer: React.FC<FooterProps> = () => {
+  const renderMenuItems = () => {
+    return menus.map((menu) => (
+      <Link to={menu.uri} key={menu.id}>
+        <li>{menu.name}</li>
+      </Link>
+    ));
+  };
+
   return (
     <footer>
       <Link to='/index.html'>
         <img className='logo' src={Logo} alt='Logo' />
       </Link>
       <nav>
-        <ul>
-          {menus.map((menu) => (
-            <Link to={menu.uri}>
-              <li key={menu.id}>{menu.name}</li>
-            </Link>
-          ))}
-        </ul>
+        <ul>{renderMenuItems()}</ul>
       </nav>
       <div className='lab_info'>
         <div className='lab_info_container right_p'>
@@ -31,24 +33,14 @@ const index: React.FC<indexProps> = () => {
         </div>
         <div className='lab_info_container lab_info_container2'>
           <div className='info_button'>
-            <Link to='#'>
-              <motion.img
-                whileTap={{ scale: 0.9 }}
-                src='https://www.ccnu.edu.cn/newskin/images/mt01.png'
-              />
-            </Link>
-            <Link to='#'>
-              <motion.img
-                whileTap={{ scale: 0.9 }}
-                src='https://www.ccnu.edu.cn/newskin/images/mt02.png'
-              />
-            </Link>
-            <Link to='#'>
-              <motion.img
-                whileTap={{ scale: 0.9 }}
-                src='https://www.ccnu.edu.cn/newskin/images/mt03.png'
-              />
-            </Link>
+            {[1, 2, 3].map((num) => (
+              <Link to='#' key={num}>
+                <motion.img
+                  whileTap={{ scale: 0.9 }}
+                  src={`https://www.ccnu.edu.cn/newskin/images/mt0${num}.png`}
+                />
+              </Link>
+            ))}
           </div>
           <div className='friend_link'>
             <p>
@@ -69,4 +61,5 @@ const index: React.FC<indexProps> = () => {
     </footer>
   );
 };
-export default index;
+
+export default Footer;
