@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Header, Carousel } from '@/components';
-import './style.less'
+import './style.less';
 
 type HomeProps = {};
 
