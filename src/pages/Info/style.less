@@ -62,8 +62,9 @@
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   min-height: 60vh;
-  margin-top: 10vh;
+  margin-top: 11vh;
   margin-left: 12.5vh;
+  width: 60vw;
 }
 
 .station {
@@ -71,6 +72,37 @@
   padding: 1vh;
 }
 
+.station a{
+  color: #444;
+}
+
 a {
   text-decoration: none;
+}
+
+.content .list a{
+  color: #444;
+}
+
+.content .list a:hover{
+  color: @primary-color-8;
+}
+
+.content .list li{
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-left: 2vw;
+  padding-left: 1vw;
+  padding-right: 2vw;
+  background-image: url(../../assets/xk_list.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+li{
+  list-style: none;
+}
+.content .list li span{
+  float: right;
+  color: #a7a7a7;
+  font-size: 0.7vw;
 }

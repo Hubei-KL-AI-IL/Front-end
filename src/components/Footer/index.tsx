@@ -44,13 +44,13 @@ const Footer: React.FC<FooterProps> = () => {
           </div>
           <div className='friend_link'>
             <p>
-              <Link to='#'>华中师范大学</Link>
+              <Link to='https://www.ccnu.edu.cn/' target='_blank'>华中师范大学</Link>
             </p>
             <p>
-              <Link to='#'>华中师范大学研究生院</Link>
+              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>华中师范大学研究生院</Link>
             </p>
             <p>
-              <Link to='#'>华中师范大学计算机学院</Link>
+              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>华中师范大学计算机学院</Link>
             </p>
           </div>
           <p className='copyright'>
