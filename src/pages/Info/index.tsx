@@ -87,11 +87,11 @@ const Info: React.FC<InfoProps> = () => {
             <a href='/home'>首页</a>
             &nbsp;&lt;&nbsp;
             <a href={title[0].uri}>{title[0].name}</a>
-            <span hidden={menuchild!=null ? false : true}>
+            <span hidden={menuchild!='null'&&menuchild!=null ? false : true}>
               &nbsp;&lt;&nbsp;
             </span>
-            <a href={title[0].haveChildren ? list[j].uri : ''}>
-              {menuchild!=null ? list[j].name : ''}
+            <a href={menuchild!='null'&&menuchild!=null ? list[j].uri : ''}>
+              {menuchild!='null'&&menuchild!=null ? list[j].name : ''}
             </a>
           </p>
           {listRender()}
