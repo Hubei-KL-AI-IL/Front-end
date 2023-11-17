@@ -28,9 +28,6 @@ const Header: React.FC<HeaderProps> = () => {
 const TopBanner = () => {
   return (
     <section className='top_banner'>
-      <motion.div whileTap={{ scale: 0.9 }} className='menu_button'>
-        &#9776;
-      </motion.div>
       <Link to='/index.html'>
         <img className='logo' src={Logo} alt='Logo' />
       </Link>
