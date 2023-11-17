@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { Header, Carousel, Footer } from '@/components';
 import {
   homeIcon_1,
@@ -14,6 +16,7 @@ import {
   homeIcon_9,
   news_list,
 } from '@/assets';
+import { slideUpOut } from '@/animations';
 import './style.less';
 
 type HomeProps = object;
@@ -24,6 +27,7 @@ const Home: React.FC<HomeProps> = () => {
       <Header />
       <main>
         <Carousel />
+        <ScrollButton />
         <div className='home_main_container'>
           <div className='main_box'>
             <div className='main_side left_box'>
@@ -173,4 +177,48 @@ const Home: React.FC<HomeProps> = () => {
     </>
   );
 };
+
 export default Home;
+
+const ScrollButton = () => {
+  const [showButton, setShowButton] = useState(false);
+
+  const handleScroll = () => {
+    const scrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollPosition > 0) {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  return (
+    <div>
+      {showButton && (
+        <AnimatePresence>
+          <motion.button {...slideUpOut} onClick={scrollToTop} className='go_top'>
+            ^<br />
+            top
+          </motion.button>
+        </AnimatePresence>
+      )}
+    </div>
+  );
+};

@@ -123,7 +123,6 @@ const Carousel: React.FC<CarouselProps> = () => {
         onClick={handleScrollClick}>
         <motion.img {...driftImg} src={scroll_button} alt='向下滚动按钮' />
       </motion.div>
-      
     </section>
   );
 };
