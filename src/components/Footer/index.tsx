@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaUserCircle } from 'react-icons/fa';
 
 import './style.less';
 import { Logo } from '@/assets';
@@ -41,16 +42,25 @@ const Footer: React.FC<FooterProps> = () => {
                 />
               </Link>
             ))}
+            <Link to='#' key={4}>
+                <FaUserCircle className='info_button_icon' />
+            </Link>
           </div>
           <div className='friend_link'>
             <p>
-              <Link to='https://www.ccnu.edu.cn/' target='_blank'>华中师范大学</Link>
+              <Link to='https://www.ccnu.edu.cn/' target='_blank'>
+                华中师范大学
+              </Link>
             </p>
             <p>
-              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>华中师范大学研究生院</Link>
+              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>
+                华中师范大学研究生院
+              </Link>
             </p>
             <p>
-              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>华中师范大学计算机学院</Link>
+              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>
+                华中师范大学计算机学院
+              </Link>
             </p>
           </div>
           <p className='copyright'>
