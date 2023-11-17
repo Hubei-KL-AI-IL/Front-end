@@ -43,10 +43,17 @@ const Carousel: React.FC<CarouselProps> = () => {
   };
 
   const handleScrollClick = () => {
-    window.scrollTo({
-      top: window.innerHeight * 0.85,
-      behavior: 'smooth',
-    });
+    if (window.innerWidth < 768) {
+      window.scrollTo({
+        top: window.innerHeight * 0.4,
+        behavior: 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top: window.innerHeight * 0.85,
+        behavior: 'smooth',
+      });
+    }
   };
 
   const renderInputs = () => {
