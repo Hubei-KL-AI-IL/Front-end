@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getDocList } from '@/interface/fetch';
 import {
   homeIcon_1,
   homeIcon_2,
@@ -23,6 +24,12 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const [activeTabThree, setActiveTabThree] = useState('优秀论文');
   const [activeTabFour, setActiveTabFour] = useState('学术交流');
 
+  //展示的内容区域
+  const [displayArrOne,setDisplayArrOne] = useState([]);
+  const [displayArrTwo,setDisplayArrTwo] = useState([]);
+  const [displayArrThree,setDisplayArrThree] = useState([]);
+  const [displayArrFour,setDisplayArrFour] = useState([]);
+
   const handleTabHoverOne = (tab: string) => {
     setActiveTabOne(tab);
   };
@@ -38,6 +45,15 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const handleTabHoverFour = (tab: string) => {
     setActiveTabFour(tab);
   };
+
+  useEffect(() => {
+    getDocList({ block: '新闻动态', group: '新闻中心' })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div className='home_main_container'>
       <div className='main_box'>
