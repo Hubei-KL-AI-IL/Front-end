@@ -14,3 +14,4 @@ export { default as homeIcon_7 } from './homeIcon_7.png';
 export { default as homeIcon_8 } from './homeIcon_8.png';
 export { default as homeIcon_9 } from './homeIcon_9.png';
 export { default as news_list } from './news_list.png';
+export { default as xk_list } from './xk_list.png';

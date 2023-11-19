@@ -12,10 +12,20 @@ import {
   homeIcon_8,
   homeIcon_9,
   news_list,
+  xk_list,
 } from '@/assets';
 import './style.less';
 
 type TabBoxProps = object;
+
+type ListInfo = {
+  block: string;
+  content: string;
+  create_at: number;
+  group: string;
+  id: number;
+  title: string;
+};
 
 const TabBox: React.FC<TabBoxProps> = () => {
   //tab选项栏
@@ -25,34 +35,176 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const [activeTabFour, setActiveTabFour] = useState('学术交流');
 
   //展示的内容区域
-  const [displayArrOne,setDisplayArrOne] = useState([]);
-  const [displayArrTwo,setDisplayArrTwo] = useState([]);
-  const [displayArrThree,setDisplayArrThree] = useState([]);
-  const [displayArrFour,setDisplayArrFour] = useState([]);
+  const [displayArrOne, setDisplayArrOne] = useState([]);
+  const [displayArrTwo, setDisplayArrTwo] = useState([]);
+  const [displayArrThree, setDisplayArrThree] = useState([]);
+  const [displayArrFour, setDisplayArrFour] = useState([]);
+
+  //将时间戳转成年-月-日
+  function formatTimestamp(timestamp: number): string {
+    const date = new Date(timestamp * 1000);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
   const handleTabHoverOne = (tab: string) => {
     setActiveTabOne(tab);
+    getDocList({ block: '新闻动态', group: tab })
+      .then((res) => {
+        console.log('hover', res.data.Docs);
+        setDisplayArrOne(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleTabHoverTwo = (tab: string) => {
     setActiveTabTwo(tab);
+    getDocList({ block: '科学研究', group: tab })
+      .then((res) => {
+        console.log('hover', res.data.Docs);
+        setDisplayArrTwo(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleTabHoverThree = (tab: string) => {
     setActiveTabThree(tab);
+    getDocList({ block: '优秀论文', group: tab })
+      .then((res) => {
+        console.log('hover', res.data.Docs);
+        setDisplayArrThree(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleTabHoverFour = (tab: string) => {
     setActiveTabFour(tab);
+    getDocList({ block: '学术交流', group: tab })
+      .then((res) => {
+        console.log('hover', res.data.Docs);
+        setDisplayArrFour(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
+    //one
     getDocList({ block: '新闻动态', group: '新闻中心' })
       .then((res) => {
-        console.log(res);
+        console.log('start', res.data.Docs);
+        setDisplayArrOne(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
+    //two
+    getDocList({ block: '人才培养', group: '人才培养' })
+      .then((res) => {
+        console.log('start', res.data.Docs);
+        setDisplayArrTwo(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
+    //three
+    getDocList({ block: '科学研究', group: '优秀论文' })
+      .then((res) => {
+        console.log('start', res.data.Docs);
+        setDisplayArrThree(res.data.Docs);
+      })
+      .catch((error) => console.log(error));
+    //four
+    getDocList({ block: '合作交流', group: '学术交流' })
+      .then((res) => {
+        console.log('start', res.data.Docs);
+        setDisplayArrFour(res.data.Docs);
       })
       .catch((error) => console.log(error));
   }, []);
+
+  const listOneRender = () => {
+    return (
+      <ul className='box_content'>
+        {displayArrOne.map((item: ListInfo, index) => {
+          return (
+            <li className='box_news' key={index}>
+              <span className='box_news_wrap'>
+                <img src={news_list} alt='' />
+                <Link
+                  to='/info?menu=6&menuchild=1&a=list'
+                  className='news_title'>
+                  {item.title}
+                </Link>
+              </span>
+              <span className='news_time'>{item.create_at}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const listTwoRender = () => {
+    return (
+      <ul className='sec_box_content'>
+        {displayArrTwo.map((item: ListInfo, index) => {
+          return (
+            <li className='sec_box_news' key={index}>
+              <span className='sec_box_news_wrap'>
+                <img src={xk_list} alt='' />
+                <Link
+                  to='/info?menu=6&menuchild=1&a=list'
+                  className='news_title'>
+                  {item.title}
+                </Link>
+              </span>
+              <span className='news_time'>{item.create_at}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const listThreeRender = () => {
+    return (
+      <ul className='sec_box_content'>
+        {displayArrThree.map((item: ListInfo, index) => {
+          return (
+            <li className='sec_box_news' key={index}>
+              <span className='sec_box_news_wrap'>
+                <img src={xk_list} alt='' />
+                <Link
+                  to='/info?menu=6&menuchild=1&a=list'
+                  className='news_title'>
+                  {item.title}
+                </Link>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const listFourRender = () => {
+    return (
+      <ul className='sec_box_content'>
+        {displayArrFour.map((item: ListInfo, index) => {
+          return (
+            <li className='sec_box_news' key={index}>
+              <span className='sec_box_news_wrap'>
+                <img src={xk_list} alt='' />
+                <Link
+                  to='/info?menu=6&menuchild=1&a=list'
+                  className='news_title'>
+                  {item.title}
+                </Link>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
 
   return (
     <div className='home_main_container'>
@@ -92,19 +244,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                 更多+
               </Link>
             </div>
-            <ul className='box_content'>
-              <li className='box_news'>
-                <span className='box_news_wrap'>
-                  <img src={news_list} alt='' />
-                  <Link
-                    to='/info?menu=6&menuchild=1&a=list'
-                    className='news_title'>
-                    这是一条例子
-                  </Link>
-                </span>
-                <span className='news_time'>2023-10-2</span>
-              </li>
-            </ul>
+            {listOneRender()}
           </div>
           <div className='table_box'>
             <div className='sec_box_header'>
@@ -145,7 +285,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                 更多+
               </Link>
             </div>
-            <ul className='sec_box_content'></ul>
+            {listTwoRender()}
           </div>
         </div>
         <div className='main_side right_box'>
@@ -203,7 +343,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                 更多+
               </Link>
             </div>
-            <ul className='sec_box_content'></ul>
+            {listThreeRender()}
           </div>
           <div className='table_box'>
             <div className='sec_box_header'>
@@ -242,7 +382,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                 更多+
               </Link>
             </div>
-            <ul className='sec_box_content'></ul>
+            {listFourRender()}
           </div>
         </div>
       </div>
