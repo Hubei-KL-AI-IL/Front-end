@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDocList } from '@/interface/fetch';
+import { formatDate } from '@/utils/formatDate';
 import {
   homeIcon_1,
   homeIcon_2,
@@ -40,15 +41,6 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const [displayArrThree, setDisplayArrThree] = useState([]);
   const [displayArrFour, setDisplayArrFour] = useState([]);
 
-  //将时间戳转成年-月-日
-  function formatTimestamp(timestamp: number): string {
-    const date = new Date(timestamp * 1000);
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
   const handleTabHoverOne = (tab: string) => {
     setActiveTabOne(tab);
     getDocList({ block: '新闻动态', group: tab })
@@ -61,7 +53,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
 
   const handleTabHoverTwo = (tab: string) => {
     setActiveTabTwo(tab);
-    getDocList({ block: '科学研究', group: tab })
+    getDocList({ block: '人才培养', group: tab })
       .then((res) => {
         console.log('hover', res.data.Docs);
         setDisplayArrTwo(res.data.Docs);
@@ -71,7 +63,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
 
   const handleTabHoverThree = (tab: string) => {
     setActiveTabThree(tab);
-    getDocList({ block: '优秀论文', group: tab })
+    getDocList({ block: '科学研究', group: tab })
       .then((res) => {
         console.log('hover', res.data.Docs);
         setDisplayArrThree(res.data.Docs);
@@ -81,7 +73,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
 
   const handleTabHoverFour = (tab: string) => {
     setActiveTabFour(tab);
-    getDocList({ block: '学术交流', group: tab })
+    getDocList({ block: '合作交流', group: tab })
       .then((res) => {
         console.log('hover', res.data.Docs);
         setDisplayArrFour(res.data.Docs);
@@ -134,7 +126,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                   {item.title}
                 </Link>
               </span>
-              <span className='news_time'>{item.create_at}</span>
+              <span className='news_time'>{formatDate(item.create_at)}</span>
             </li>
           );
         })}
@@ -156,7 +148,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
                   {item.title}
                 </Link>
               </span>
-              <span className='news_time'>{item.create_at}</span>
+              <span className='news_time'>{formatDate(item.create_at)}</span>
             </li>
           );
         })}
