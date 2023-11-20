@@ -41,75 +41,64 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const [displayArrThree, setDisplayArrThree] = useState([]);
   const [displayArrFour, setDisplayArrFour] = useState([]);
 
-  const handleTabHoverOne = (tab: string) => {
-    setActiveTabOne(tab);
-    getDocList({ block: '新闻动态', group: tab })
+  const handleTabHover = (
+    block: string,
+    tab: string,
+    setActiveTab: React.Dispatch<React.SetStateAction<string>>,
+    setDisplayArr: React.Dispatch<React.SetStateAction<any>>,
+  ) => {
+    setActiveTab(tab);
+    getDocList({ block, group: tab })
       .then((res) => {
-        console.log('hover', res.data.Docs);
-        setDisplayArrOne(res.data.Docs);
+        // 如果 res.data.Docs 不为空，只取前八个元素
+        const displayArrTemp = res.data.Docs && res.data.Docs.slice(0, 8);
+        setDisplayArr(displayArrTemp);
       })
       .catch((error) => console.log(error));
   };
-
-  const handleTabHoverTwo = (tab: string) => {
-    setActiveTabTwo(tab);
-    getDocList({ block: '人才培养', group: tab })
-      .then((res) => {
-        console.log('hover', res.data.Docs);
-        setDisplayArrTwo(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleTabHoverThree = (tab: string) => {
-    setActiveTabThree(tab);
-    getDocList({ block: '科学研究', group: tab })
-      .then((res) => {
-        console.log('hover', res.data.Docs);
-        setDisplayArrThree(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleTabHoverFour = (tab: string) => {
-    setActiveTabFour(tab);
-    getDocList({ block: '合作交流', group: tab })
-      .then((res) => {
-        console.log('hover', res.data.Docs);
-        setDisplayArrFour(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-  };
+  const handleTabHoverOne = (tab: string) =>
+    handleTabHover('新闻动态', tab, setActiveTabOne, setDisplayArrOne);
+  const handleTabHoverTwo = (tab: string) =>
+    handleTabHover('人才培养', tab, setActiveTabTwo, setDisplayArrTwo);
+  const handleTabHoverThree = (tab: string) =>
+    handleTabHover('科学研究', tab, setActiveTabThree, setDisplayArrThree);
+  const handleTabHoverFour = (tab: string) =>
+    handleTabHover('合作交流', tab, setActiveTabFour, setDisplayArrFour);
 
   useEffect(() => {
-    //one
-    getDocList({ block: '新闻动态', group: '新闻中心' })
-      .then((res) => {
-        console.log('start', res.data.Docs);
-        setDisplayArrOne(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-    //two
-    getDocList({ block: '人才培养', group: '人才培养' })
-      .then((res) => {
-        console.log('start', res.data.Docs);
-        setDisplayArrTwo(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-    //three
-    getDocList({ block: '科学研究', group: '优秀论文' })
-      .then((res) => {
-        console.log('start', res.data.Docs);
-        setDisplayArrThree(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
-    //four
-    getDocList({ block: '合作交流', group: '学术交流' })
-      .then((res) => {
-        console.log('start', res.data.Docs);
-        setDisplayArrFour(res.data.Docs);
-      })
-      .catch((error) => console.log(error));
+    const fetchData = async (
+      block: string,
+      group: string,
+      setDisplayArr: React.Dispatch<React.SetStateAction<any>>,
+    ) => {
+      try {
+        const res = await getDocList({ block, group });
+        // 如果 res.data.Docs 不为空，只取前八个元素
+        const displayArrTemp = res.data.Docs && res.data.Docs.slice(0, 8);
+        setDisplayArr(displayArrTemp);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const sections = [
+      { block: '新闻动态', group: '新闻中心', setDisplayArr: setDisplayArrOne },
+      { block: '人才培养', group: '人才培养', setDisplayArr: setDisplayArrTwo },
+      {
+        block: '科学研究',
+        group: '优秀论文',
+        setDisplayArr: setDisplayArrThree,
+      },
+      {
+        block: '合作交流',
+        group: '学术交流',
+        setDisplayArr: setDisplayArrFour,
+      },
+    ];
+
+    sections.forEach(({ block, group, setDisplayArr }) => {
+      fetchData(block, group, setDisplayArr);
+    });
   }, []);
 
   const listOneRender = () => {
