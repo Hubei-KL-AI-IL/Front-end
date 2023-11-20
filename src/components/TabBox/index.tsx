@@ -108,12 +108,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
       <ul className='box_content'>
         {displayArrOne &&
           displayArrOne.map((item: ListInfo, index) => {
+            const menuChildIndex = activeTabOne === '新闻中心' ? 0 : 1;
             return (
               <li className='box_news' key={item.id}>
                 <span className='box_news_wrap'>
                   <img src={news_list} alt='' />
                   <Link
-                    to='/info?menu=6&menuchild=1&a=list'
+                    to={`/info?menu=6&menuchild=${menuChildIndex}&a=single&id=${item.id}`}
                     className='news_title'>
                     {item.title}
                   </Link>
@@ -131,12 +132,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
       <ul className='sec_box_content'>
         {displayArrTwo &&
           displayArrTwo.map((item: ListInfo, index) => {
+            const menuChildIndex = activeTabTwo === '人才培养' ? 0 : 1;
             return (
               <li className='sec_box_news' key={item.id}>
                 <span className='sec_box_news_wrap'>
                   <img src={xk_list} alt='' />
                   <Link
-                    to='/info?menu=6&menuchild=1&a=list'
+                    to={`/info?menu=5&menuchild=${menuChildIndex}&a=single&id=${item.id}`}
                     className='news_title'>
                     {item.title}
                   </Link>
@@ -154,12 +156,18 @@ const TabBox: React.FC<TabBoxProps> = () => {
       <ul className='sec_box_content'>
         {displayArrThree &&
           displayArrThree.map((item: ListInfo, index) => {
+            const menuChildIndex =
+              activeTabThree === '优秀论文'
+                ? 0
+                : activeTabThree === '知识产权'
+                ? 1
+                : 2;
             return (
               <li className='sec_box_news' key={item.id}>
                 <span className='sec_box_news_wrap'>
                   <img src={xk_list} alt='' />
                   <Link
-                    to='/info?menu=6&menuchild=1&a=list'
+                    to={`/info?menu=4&menuchild=${menuChildIndex}&a=single&id=${item.id}`}
                     className='news_title'>
                     {item.title}
                   </Link>
@@ -176,12 +184,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
       <ul className='sec_box_content'>
         {displayArrFour &&
           displayArrFour.map((item: ListInfo, index) => {
+            const menuChildIndex = activeTabFour === '学术交流' ? 0 : 1;
             return (
               <li className='sec_box_news' key={item.id}>
                 <span className='sec_box_news_wrap'>
                   <img src={xk_list} alt='' />
                   <Link
-                    to='/info?menu=6&menuchild=1&a=list'
+                    to={`/info?menu=7&menuchild=${menuChildIndex}&a=single&id=${item.id}`}
                     className='news_title'>
                     {item.title}
                   </Link>
@@ -227,7 +236,11 @@ const TabBox: React.FC<TabBoxProps> = () => {
               </ul>
               <Link
                 className='header_more'
-                to='/info?menu=6&menuchild=1&a=list'>
+                to={
+                  activeTabOne === '新闻中心'
+                    ? '/info?menu=6&menuchild=0&a=list'
+                    : '/info?menu=6&menuchild=1&a=list'
+                }>
                 更多+
               </Link>
             </div>
@@ -268,7 +281,11 @@ const TabBox: React.FC<TabBoxProps> = () => {
               </ul>
               <Link
                 className='sec_header_more'
-                to='/info?menu=5&menuchild=1&a=list'>
+                to={
+                  activeTabTwo === '人才培养'
+                    ? '/info?menu=5&menuchild=0&a=list'
+                    : '/info?menu=5&menuchild=1&a=list'
+                }>
                 更多+
               </Link>
             </div>
@@ -326,7 +343,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
               </ul>
               <Link
                 className='sec_header_more'
-                to='/info?menu=4&menuchild=2&a=list'>
+                to={
+                  activeTabThree === '优秀论文'
+                    ? '/info?menu=4&menuchild=0&a=list'
+                    : activeTabThree === '知识产权'
+                    ? '/info?menu=4&menuchild=1&a=list'
+                    : '/info?menu=4&menuchild=2&a=list'
+                }>
                 更多+
               </Link>
             </div>
@@ -365,7 +388,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
                   </Link>
                 </li>
               </ul>
-              <Link className='sec_header_more' to='/info?menu=7&menuchild=1'>
+              <Link
+                className='sec_header_more'
+                to={
+                  activeTabFour === '学术交流'
+                    ? '/info?menu=7&menuchild=0&a=list'
+                    : '/info?menu=7&menuchild=1&a=list'
+                }>
                 更多+
               </Link>
             </div>
