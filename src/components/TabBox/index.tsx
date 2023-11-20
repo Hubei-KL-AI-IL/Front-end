@@ -50,8 +50,9 @@ const TabBox: React.FC<TabBoxProps> = () => {
     setActiveTab(tab);
     getDocList({ block, group: tab })
       .then((res) => {
-        // 如果 res.data.Docs 不为空，只取前八个元素
-        const displayArrTemp = res.data.Docs && res.data.Docs.slice(0, 8);
+        // 如果 res.data.Docs 不为空，只取后八个元素（最新）
+        const displayArrTemp =
+          res.data.Docs && res.data.Docs.slice(-8).reverse();
         setDisplayArr(displayArrTemp);
       })
       .catch((error) => console.log(error));
@@ -73,8 +74,9 @@ const TabBox: React.FC<TabBoxProps> = () => {
     ) => {
       try {
         const res = await getDocList({ block, group });
-        // 如果 res.data.Docs 不为空，只取前八个元素
-        const displayArrTemp = res.data.Docs && res.data.Docs.slice(0, 8);
+        // 如果 res.data.Docs 不为空，只取后八个元素（最新）
+        const displayArrTemp =
+          res.data.Docs && res.data.Docs.slice(-8).reverse();
         setDisplayArr(displayArrTemp);
       } catch (error) {
         console.log(error);
@@ -104,21 +106,22 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const listOneRender = () => {
     return (
       <ul className='box_content'>
-        {displayArrOne.map((item: ListInfo, index) => {
-          return (
-            <li className='box_news' key={index}>
-              <span className='box_news_wrap'>
-                <img src={news_list} alt='' />
-                <Link
-                  to='/info?menu=6&menuchild=1&a=list'
-                  className='news_title'>
-                  {item.title}
-                </Link>
-              </span>
-              <span className='news_time'>{formatDate(item.create_at)}</span>
-            </li>
-          );
-        })}
+        {displayArrOne &&
+          displayArrOne.map((item: ListInfo, index) => {
+            return (
+              <li className='box_news' key={item.id}>
+                <span className='box_news_wrap'>
+                  <img src={news_list} alt='' />
+                  <Link
+                    to='/info?menu=6&menuchild=1&a=list'
+                    className='news_title'>
+                    {item.title}
+                  </Link>
+                </span>
+                <span className='news_time'>{formatDate(item.create_at)}</span>
+              </li>
+            );
+          })}
       </ul>
     );
   };
@@ -126,21 +129,22 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const listTwoRender = () => {
     return (
       <ul className='sec_box_content'>
-        {displayArrTwo.map((item: ListInfo, index) => {
-          return (
-            <li className='sec_box_news' key={index}>
-              <span className='sec_box_news_wrap'>
-                <img src={xk_list} alt='' />
-                <Link
-                  to='/info?menu=6&menuchild=1&a=list'
-                  className='news_title'>
-                  {item.title}
-                </Link>
-              </span>
-              <span className='news_time'>{formatDate(item.create_at)}</span>
-            </li>
-          );
-        })}
+        {displayArrTwo &&
+          displayArrTwo.map((item: ListInfo, index) => {
+            return (
+              <li className='sec_box_news' key={item.id}>
+                <span className='sec_box_news_wrap'>
+                  <img src={xk_list} alt='' />
+                  <Link
+                    to='/info?menu=6&menuchild=1&a=list'
+                    className='news_title'>
+                    {item.title}
+                  </Link>
+                </span>
+                <span className='news_time'>{formatDate(item.create_at)}</span>
+              </li>
+            );
+          })}
       </ul>
     );
   };
@@ -148,20 +152,21 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const listThreeRender = () => {
     return (
       <ul className='sec_box_content'>
-        {displayArrThree.map((item: ListInfo, index) => {
-          return (
-            <li className='sec_box_news' key={index}>
-              <span className='sec_box_news_wrap'>
-                <img src={xk_list} alt='' />
-                <Link
-                  to='/info?menu=6&menuchild=1&a=list'
-                  className='news_title'>
-                  {item.title}
-                </Link>
-              </span>
-            </li>
-          );
-        })}
+        {displayArrThree &&
+          displayArrThree.map((item: ListInfo, index) => {
+            return (
+              <li className='sec_box_news' key={item.id}>
+                <span className='sec_box_news_wrap'>
+                  <img src={xk_list} alt='' />
+                  <Link
+                    to='/info?menu=6&menuchild=1&a=list'
+                    className='news_title'>
+                    {item.title}
+                  </Link>
+                </span>
+              </li>
+            );
+          })}
       </ul>
     );
   };
@@ -169,20 +174,21 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const listFourRender = () => {
     return (
       <ul className='sec_box_content'>
-        {displayArrFour.map((item: ListInfo, index) => {
-          return (
-            <li className='sec_box_news' key={index}>
-              <span className='sec_box_news_wrap'>
-                <img src={xk_list} alt='' />
-                <Link
-                  to='/info?menu=6&menuchild=1&a=list'
-                  className='news_title'>
-                  {item.title}
-                </Link>
-              </span>
-            </li>
-          );
-        })}
+        {displayArrFour &&
+          displayArrFour.map((item: ListInfo, index) => {
+            return (
+              <li className='sec_box_news' key={item.id}>
+                <span className='sec_box_news_wrap'>
+                  <img src={xk_list} alt='' />
+                  <Link
+                    to='/info?menu=6&menuchild=1&a=list'
+                    className='news_title'>
+                    {item.title}
+                  </Link>
+                </span>
+              </li>
+            );
+          })}
       </ul>
     );
   };
