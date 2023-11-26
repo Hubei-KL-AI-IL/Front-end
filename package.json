@@ -2,7 +2,7 @@
   "name": "labwebsite",
   "private": true,
   "version": "0.0.0",
-  "type": "module",  
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -15,6 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-pdf": "^7.5.1",
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {

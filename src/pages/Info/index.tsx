@@ -1,9 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 
 import { Footer, Header } from '@/components';
 import { Icon } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
+
+import { Document, Page, pdfjs } from "react-pdf";
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+
+import example from '../../assets/example.pdf'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+
 import './style.less';
 
 type InfoProps = object;
@@ -56,6 +67,15 @@ const Info: React.FC<InfoProps> = () => {
     return i == menu.index;
   });
 
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+  
+    function onLoadSuccess(data: { numPages: number }) {
+      setNumPages(numPages);
+    }
+
+  //const file ={ url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', httpHeaders: { 'X-CustomHeader': 'xxxxxxxxxxxx' }, withCredentials: true }
+//https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/
   return (
     <>
       <Header />
@@ -95,6 +115,12 @@ const Info: React.FC<InfoProps> = () => {
             </a>
           </p>
           {listRender()}
+          {/*file 只实现了本地文件的加载
+          如果使用url 会出现跨域问题..
+          以下是一个pdf示例*/ }
+            <Document file={example} onLoadSuccess={onLoadSuccess}>
+              <Page className="page_style" pageNumber={pageNumber}/>
+            </Document>
         </div>
       </main>
       <Footer />
