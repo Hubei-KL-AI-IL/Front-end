@@ -53,7 +53,7 @@ const Footer: React.FC<FooterProps> = () => {
               </Link>
             </p>
             <p>
-              <Link to='http://cs.ccnu.edu.cn/' target='_blank'>
+              <Link to='http://gs.ccnu.edu.cn/' target='_blank'>
                 华中师范大学研究生院
               </Link>
             </p>
