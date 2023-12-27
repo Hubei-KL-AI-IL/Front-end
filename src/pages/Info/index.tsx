@@ -68,9 +68,9 @@ const Info: React.FC<InfoProps> = () => {
     return (
   <ul className='list'>
     {
-      docs != null ?
+      docs != null&&docs.length > 0 ?
       docs.map((list,index)=>{
-        return <li key={list.id}>
+        return <li key={index}>
           <a href={`/info?menu=${menu}&menuchild=${menuchild}&a=single&id=${list.id}`} target='_blank'>{list.title}</a>
         </li>
       }):
@@ -109,8 +109,14 @@ const [docContent, setdocContent] = useState<string | null>(null);
     getDoc(`visitor/document?block=${title[0].name}&group=${list[j].name}`)
     .then(result => {
       console.log(result);
-      setDocs(result.data.Docs);
-      setdocContent(result.data.Docs[0].content);
+      if(result.code==1000){
+        setDocs(result.data.Docs);
+        setdocContent(result.data.Docs[0].content);
+      }
+      else{
+        setDocs(null);
+        setdocContent(null);
+      }
     })
     .catch(error => console.log('error', error));
   }
@@ -123,7 +129,16 @@ const [docContent, setdocContent] = useState<string | null>(null);
       .catch(error => console.log('error', error));
   }
   else{
-    
+    getDoc(`visitor/document?block=${title[0].name}&group=${encodeURI('%')}`)
+    .then(result => {
+      console.log(result);
+      if(result.code == 1000)
+      setDocs(result.data.Docs);
+    else{
+      setDocs(null);
+    }
+    })
+    .catch(error => console.log('error', error));
   }
 
 },[menu,menuchild])
@@ -157,8 +172,8 @@ const [docContent, setdocContent] = useState<string | null>(null);
               ? list.map((each, index) => {
                   return (
                     <a href={each.uri} key={each.id}>
-                      <li
-                        className={index == j ? 'activeList' : ''}>
+                      <li 
+                        className={String(index) == menuchild ? 'activeList' : ''}>
                         {each.name}
                       </li>
                     </a>

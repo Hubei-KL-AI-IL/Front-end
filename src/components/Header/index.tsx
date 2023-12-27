@@ -73,7 +73,7 @@ const Navigation = () => {
     );
 
     return filteredChildren.map((child) => (
-      <Link key={child.index} to={child.uri}>
+      <Link key={child.uri} to={child.uri}>
         <motion.div whileTap={{ scale: 1.2 }} className='dropdown_list_content'>
           <p className='dropdown_list_name'>{child.name}</p>
           <AiFillCaretLeft className='AiFillCaretLeft' />
