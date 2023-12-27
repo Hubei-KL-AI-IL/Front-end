@@ -43,7 +43,7 @@ const Footer: React.FC<FooterProps> = () => {
               </Link>
             ))}
             <Link to='#' key={4}>
-                <FaUserCircle className='info_button_icon' />
+              <FaUserCircle className='info_button_icon' />
             </Link>
           </div>
           <div className='friend_link'>
