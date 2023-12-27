@@ -57,7 +57,10 @@ const ScrollButton = () => {
     <div>
       {showButton && (
         <AnimatePresence>
-          <motion.button {...slideUpOut} onClick={scrollToTop} className='go_top'>
+          <motion.button
+            {...slideUpOut}
+            onClick={scrollToTop}
+            className='go_top'>
             ^<br />
             top
           </motion.button>
