@@ -1,4 +1,4 @@
-const preurl = 'http://43.138.61.49:30000';
+const preurl = 'http://139.196.166.244:30000';
 
 // GET
 export async function getDocList({
