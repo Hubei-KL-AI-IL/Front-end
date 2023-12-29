@@ -56,22 +56,25 @@ const Info: React.FC<InfoProps> = () => {
 
   const listRender = () => {
     return (
-  <ul className='list'>
-    {
-      docs != null&&docs.length > 0 ?
-      docs.map((list,index)=>{
-        return <li key={index}>
-          <a href={`/info?menu=${menu}&menuchild=${menuchild}&a=single&id=${list.id}`} target='_blank'>{list.title}</a>
-        </li>
-      }):
-      (
-        <p>No documents available</p>
-      )
-      }
-  </ul>
-  )
-}
-
+      <ul className='list'>
+        {docs != null && docs.length > 0 ? (
+          docs.map((list, index) => {
+            return (
+              <li key={index}>
+                <a
+                  href={`/info?menu=${menu}&menuchild=${menuchild}&a=single&id=${list.id}`}
+                  target='_blank'>
+                  {list.title}
+                </a>
+              </li>
+            );
+          })
+        ) : (
+          <p>No documents available</p>
+        )}
+      </ul>
+    );
+  };
 
   const list = menuChildren.filter((child) => {
     return i == child.index;
@@ -90,45 +93,38 @@ const Info: React.FC<InfoProps> = () => {
   const [docId, setdocId] = useState(null);
   const [docContent, setdocContent] = useState<string | null>(null);
 
- useEffect(()=>{
-  if(menuchild!=null&&menuchild!='null')
-  {
-    getDoc(`visitor/document?block=${title[0].name}&group=${list[j].name}`)
-    .then(result => {
-      console.log(result);
-      if(result.code==1000){
-        setDocs(result.data.Docs);
-        setdocContent(result.data.Docs[0].content);
-      }
-      else{
-        setDocs(null);
-        setdocContent(null);
-      }
-    })
-    .catch(error => console.log('error', error));
-  }
-  else if(id!=null&&id!='null')
-  {
-    getDoc(`visitor/document/detail?id=${id}`)
-      .then(result => {
-        setdocContent(result.data.Docs.content);
-      })
-      .catch(error => console.log('error', error));
-  }
-  else{
-    getDoc(`visitor/document?block=${title[0].name}&group=${encodeURI('%')}`)
-    .then(result => {
-      console.log(result);
-      if(result.code == 1000)
-      setDocs(result.data.Docs);
-    else{
-      setDocs(null);
+  useEffect(() => {
+    if (menuchild != null && menuchild != 'null') {
+      getDoc(`visitor/document?block=${title[0].name}&group=${list[j].name}`)
+        .then((result) => {
+          console.log(result);
+          if (result.code == 1000) {
+            setDocs(result.data.Docs);
+            setdocContent(result.data.Docs[0].content);
+          } else {
+            setDocs(null);
+            setdocContent(null);
+          }
+        })
+        .catch((error) => console.log('error', error));
+    } else if (id != null && id != 'null') {
+      getDoc(`visitor/document/detail?id=${id}`)
+        .then((result) => {
+          setdocContent(result.data.Docs.content);
+        })
+        .catch((error) => console.log('error', error));
+    } else {
+      getDoc(`visitor/document?block=${title[0].name}&group=${encodeURI('%')}`)
+        .then((result) => {
+          console.log(result);
+          if (result.code == 1000) setDocs(result.data.Docs);
+          else {
+            setDocs(null);
+          }
+        })
+        .catch((error) => console.log('error', error));
     }
-    })
-    .catch(error => console.log('error', error));
-  }
-
-},[menu,menuchild])
+  }, [menu, menuchild]);
 
   const docRender = () => {
     return (
@@ -155,8 +151,10 @@ const Info: React.FC<InfoProps> = () => {
               ? list.map((each, index) => {
                   return (
                     <a href={each.uri} key={each.id}>
-                      <li 
-                        className={String(index) == menuchild ? 'activeList' : ''}>
+                      <li
+                        className={
+                          String(index) == menuchild ? 'activeList' : ''
+                        }>
                         {each.name}
                       </li>
                     </a>
