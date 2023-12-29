@@ -45,7 +45,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
     block: string,
     tab: string,
     setActiveTab: React.Dispatch<React.SetStateAction<string>>,
-    setDisplayArr: React.Dispatch<React.SetStateAction<any>>,
+    setDisplayArr: React.Dispatch<React.SetStateAction<ListInfo[]>>,
   ) => {
     setActiveTab(tab);
     getDocList({ block, group: tab })
