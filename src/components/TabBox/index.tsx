@@ -36,10 +36,10 @@ const TabBox: React.FC<TabBoxProps> = () => {
   const [activeTabFour, setActiveTabFour] = useState('学术交流');
 
   //展示的内容区域
-  const [displayArrOne, setDisplayArrOne] = useState([]);
-  const [displayArrTwo, setDisplayArrTwo] = useState([]);
-  const [displayArrThree, setDisplayArrThree] = useState([]);
-  const [displayArrFour, setDisplayArrFour] = useState([]);
+  const [displayArrOne, setDisplayArrOne] = useState<ListInfo[]>([]);
+  const [displayArrTwo, setDisplayArrTwo] = useState<ListInfo[]>([]);
+  const [displayArrThree, setDisplayArrThree] = useState<ListInfo[]>([]);
+  const [displayArrFour, setDisplayArrFour] = useState<ListInfo[]>([]);
 
   const handleTabHover = (
     block: string,
