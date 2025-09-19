@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = () => {
             </p>
           </div>
           <p className='copyright'>
-            Copyright © 2023 华中师范大学人工智能与智慧学习湖北省重点实验室
+            Copyright © 2025 华中师范大学教育智能体工程技术研究中心
           </p>
         </div>
       </div>

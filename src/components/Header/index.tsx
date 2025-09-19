@@ -32,7 +32,7 @@ const TopBanner = () => {
         <img className='logo' src={Logo} alt='Logo' />
       </Link>
       <Link to='/index.html'>
-        <p className='subname'>人工智能与智慧学习湖北省重点实验室</p>
+        <p className='subname'>教育智能体工程技术研究中心</p>
       </Link>
       <img
         className='ccnu_gate'
