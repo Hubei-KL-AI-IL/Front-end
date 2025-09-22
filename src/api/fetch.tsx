@@ -1,4 +1,4 @@
-const preurl = 'http://60.205.12.92:30000/api/v1/';
+const preurl = 'https://api.ailab.booling.cn/api/v1/';
 
 export async function getDoc(url: string) {
   const response = await fetch(preurl + url, {

@@ -1,4 +1,4 @@
-const preurl = 'http://60.205.12.92:30000';
+const preurl = 'https://api.ailab.booling.cn';
 
 // GET
 export async function getDocList({
