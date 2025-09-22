@@ -40,8 +40,9 @@ module.exports = {
     'react/jsx-uses-react': 'off', // 无须在组件中显式 import React。
     'react/react-in-jsx-scope': 'off', // 确保已经正确引入了 React 库。
     '@typescript-eslint/no-explicit-any': ['off'], // 允许使用 any 类型。
+    'no-unused-vars': 'warn', // 允许使用未使用的变量。
     'no-unused-expressions': [
-      'error',
+      'warn',
       {
         allowShortCircuit: true,
         allowTernary: true,
