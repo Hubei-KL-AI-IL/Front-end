@@ -20,6 +20,7 @@ export async function getDocList({
         'Content-Type': 'application/json;charset=utf-8',
       },
       redirect: 'follow',
+      mode: 'cors',
     });
 
     if (!response.ok) {

@@ -4,6 +4,7 @@ export async function getDoc(url: string) {
   const response = await fetch(preurl + url, {
     method: 'GET',
     headers: {},
+    mode: 'cors',
   }).catch((error) => console.log('error', error));
 
   if (response instanceof Response) {
