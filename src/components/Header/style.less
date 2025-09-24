@@ -5,121 +5,140 @@ header {
   position: fixed;
   box-shadow: 0 4px 12px @box-shadow;
   z-index: 9999;
-}
-
-header .top_banner {
-  width: 100%;
-  height: 10vh;
   background: @primary-color;
-  display: flex;
-  align-items: center;
-  position: relative;
 }
 
-header .menu_button {
-  display: none;
-}
-
-header .logo {
-  width: auto;
-  height: 6vh;
-  position: relative;
-  left: 18vw;
-}
-
-header .subname {
-  color: white;
-  font-size: 2.5vh;
-  font-weight: bold;
-  position: relative;
-  left: 19.5vw;
-}
-
-header .ccnu_gate {
-  width: 40vw;
-  height: inherit;
-  position: absolute;
-  right: 0;
-  filter: invert(25%);
-}
-
-header nav {
+.header-container {
   width: 100%;
-  height: 5vh;
-  background: @primary-color-1;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 左侧：Logo和标题
+.header-left {
+  display: flex;
+  align-items: center;
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    
+    .logo {
+      height: 60px;
+      margin-right: 15px;
+      object-fit: contain;
+    }
+    
+    .title-section {
+      .main-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0 0 5px 0;
+        line-height: 1.3;
+        color: white;
+      }
+      
+      .sub-title {
+        font-size: 24px;
+        margin: 0;
+        line-height: 1.3;
+        color: white;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+// 右侧：导航菜单
+.header-right {
+  .main-navigation {
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 10px;
+    }
+    
+    li {
+      position: relative;
+    }
+    
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+// 导航菜单项样式
+.navbar_choice {
+  height: 50px;
+  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-header nav ul {
-  height: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header nav li {
-  display: inline;
-}
-
-header nav a {
-  text-decoration: none;
-  font-size: 1.1vw;
-}
-
-header .navbar_choice {
-  height: 5vh;
-  padding: 0 2vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 40px;
   color: white;
   position: relative;
   transition: all 0.3s linear;
-}
-header .navbar_choice::before {
-  content: '';
-  width: 100%;
-  height: 0;
-  background-color: @primary-color-7;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.3s ease-in-out;
-  z-index: -1;
-}
-header nav li:hover .navbar_choice:hover::before {
-  top: unset;
-  bottom: 0;
-  height: 100%;
-}
-header .navbar_choice_clicked {
-  background-color: @primary-color-7;
+  
+  &::before {
+    content: '';
+    width: 100%;
+    height: 0;
+    background-color: @primary-color-7;
+    position: absolute;
+    top: 0;
+    left: -20px;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+  }
 }
 
-header .highlight::before {
+// 原来的hover效果选择器
+.main-navigation li:hover .navbar_choice:hover::before {
   top: unset;
   bottom: 0;
   height: 100%;
 }
 
-header .navbar_choice_name {
-  font-weight: bold;
+.navbar_choice_clicked {
+  background-color: @primary-color-7;
 }
 
-header .dropdown_list {
+.highlight::before {
+  top: unset;
+  bottom: 0;
+  height: 100%;
+}
+
+.navbar_choice_name {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+// 下拉菜单样式 - 完全按照原来的设计
+.dropdown_list {
   position: absolute;
+  top: 100%;
+  left: -22px;
+  width: 9vw;
   box-shadow: 0 4px 12px @box-shadow;
   display: block;
 }
 
-header .dropdown_list_content {
+.dropdown_list_content {
   list-style: none;
-  width: 9vw;
+  width: 100%;
   height: 5vh;
   display: flex;
   justify-content: space-evenly;
@@ -129,39 +148,115 @@ header .dropdown_list_content {
   background-color: @primary-color-3;
 }
 
-header .dropdown_list a:hover .dropdown_list_content {
+.dropdown_list a:hover .dropdown_list_content {
   background-color: @secondary-color-7;
 }
 
-header .AiFillCaretLeft {
+.AiFillCaretLeft {
   display: none;
 }
 
-header .dropdown_list_content:hover .AiFillCaretLeft {
+.dropdown_list_content:hover .AiFillCaretLeft {
   display: block;
 }
 
+// 响应式设计
 @media screen and (max-width: 768px) {
+  .header-container {
+    padding: 0 15px;
+    height: 70px;
+  }
+  
+  .header-left {
+    .logo-section {
+      .logo {
+        width: 100px;
+        height: 50px;
+        margin-right: 10px;
+      }
+      
+      .title-section {
+        .main-title {
+          font-size: 16px;
+        }
+        
+        .sub-title {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  
+  .header-right {
+    .main-navigation {
+      ul {
+        gap: 5px;
+      }
+    }
+  }
+  
+  .navbar_choice {
+    padding: 0 15px;
+    height: 45px;
+    
+    .navbar_choice_name {
+      font-size: 13px;
+    }
+  }
+  
+  .dropdown_list {
+    min-width: 180px;
+  }
+  
+  .dropdown_list_content {
+    height: 40px;
+    font-size: 13px;
+    padding: 0 12px;
+  }
 }
 
-@media screen and (orientation: portrait) {
-  header .logo {
-    width: auto;
-    height: 5vh;
-    left: 2vw;
+@media screen and (max-width: 480px) {
+  .header-container {
+    padding: 0 10px;
+    height: 60px;
   }
-  header .subname {
-    font-size: 2vh;
-    left: 4vw;
+  
+  .header-left {
+    .logo-section {
+      .logo {
+        width: 80px;
+        height: 40px;
+        margin-right: 8px;
+      }
+      
+      .title-section {
+        .main-title {
+          font-size: 14px;
+        }
+        
+        .sub-title {
+          font-size: 11px;
+        }
+      }
+    }
   }
-  header .menu_button {
-    display: block;
-    background-color: transparent;
-    color: white;
-    font-size: 35px;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    right: 1.5vw;
+  
+  .navbar_choice {
+    padding: 0 10px;
+    height: 40px;
+    
+    .navbar_choice_name {
+      font-size: 12px;
+    }
+  }
+  
+  .dropdown_list {
+    min-width: 160px;
+  }
+  
+  .dropdown_list_content {
+    height: 35px;
+    font-size: 12px;
+    padding: 0 10px;
   }
 }

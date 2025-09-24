@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getDoc } from '../../api/fetch';
 
 import { Footer, Header } from '@/components';
-import { Icon } from '@/assets';
+import { Icon1 } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -151,7 +151,7 @@ const Info: React.FC<InfoProps> = () => {
         {title[0].haveChildren == true && (
           <div className='aside'>
             <div className='h'>
-              <img src={Icon} alt='' />
+              <img src={Icon1} alt='' />
               <h4>{title[0].name}</h4>
             </div>
             <ul className='menu'>
@@ -176,7 +176,7 @@ const Info: React.FC<InfoProps> = () => {
           }`}>
           {title[0].haveChildren != true && (
             <div className='sectionHeader'>
-              <img src={Icon} alt='' />
+              <img src={Icon1} alt='' />
               <h4>{title[0].name}</h4>
             </div>
           )}
