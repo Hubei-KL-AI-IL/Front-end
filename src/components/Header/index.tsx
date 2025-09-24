@@ -13,33 +13,28 @@ type HeaderProps = object;
 const Header: React.FC<HeaderProps> = () => {
   return (
     <header>
-      <TopBanner />
-      <section>
-        <nav>
-          <ul>
-            <Navigation />
-          </ul>
-        </nav>
-      </section>
-    </header>
-  );
-};
+      <div className='header-container'>
+        {/* 左侧：Logo和标题 */}
+        <div className='header-left'>
+          <Link to='/index.html' className='logo-section'>
+            <img className='logo' src={Logo} alt='Logo' />
+            <div className='title-section'>
+              {/* <h1 className='main-title'>华中师范大学 计算机学院</h1> */}
+              <h1 className='sub-title'>教育智能体工程技术研究中心</h1>
+            </div>
+          </Link>
+        </div>
 
-const TopBanner = () => {
-  return (
-    <section className='top_banner'>
-      <Link to='/index.html'>
-        <img className='logo' src={Logo} alt='Logo' />
-      </Link>
-      <Link to='/index.html'>
-        <p className='subname'>教育智能体工程技术研究中心</p>
-      </Link>
-      <img
-        className='ccnu_gate'
-        src='http://cs.ccnu.edu.cn/images/header_top.png'
-        alt='ccnu_gate'
-      />
-    </section>
+        {/* 右侧：导航菜单 */}
+        <div className='header-right'>
+          <nav className='main-navigation'>
+            <ul>
+              <Navigation />
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
   );
 };
 

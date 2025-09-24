@@ -1,9 +1,10 @@
-const preurl = 'http://139.196.166.244:30000/api/v1/';
+const preurl = 'https://api.ailab.booling.cn/api/v1/';
 
 export async function getDoc(url: string) {
   const response = await fetch(preurl + url, {
     method: 'GET',
     headers: {},
+    mode: 'cors',
   }).catch((error) => console.log('error', error));
 
   if (response instanceof Response) {

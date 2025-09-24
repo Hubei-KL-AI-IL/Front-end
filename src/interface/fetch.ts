@@ -1,4 +1,4 @@
-const preurl = 'http://139.196.166.244:30000';
+const preurl = 'https://api.ailab.booling.cn';
 
 // GET
 export async function getDocList({
@@ -20,6 +20,7 @@ export async function getDocList({
         'Content-Type': 'application/json;charset=utf-8',
       },
       redirect: 'follow',
+      mode: 'cors',
     });
 
     if (!response.ok) {

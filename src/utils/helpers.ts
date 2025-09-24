@@ -24,9 +24,10 @@ export const menus: Menu[] = [
   {
     id: crypto.randomUUID(),
     index: 2,
-    haveChildren: true,
+    haveChildren: false,
     name: '中心概况',
-    uri: '/info?menu=2&menuchild=0',
+    // uri: '/info?menu=2&menuchild=0',
+    uri: '/info?menu=2',
   },
   // {
   //   id: crypto.randomUUID(),
@@ -52,9 +53,10 @@ export const menus: Menu[] = [
   {
     id: crypto.randomUUID(),
     index: 6,
-    haveChildren: true,
+    haveChildren: false,
     name: '研究人员',
-    uri: '/info?menu=6&a=list',
+    // uri: '/info?menu=6&a=list',
+    uri: '/info?menu=6',
   },
   {
     id: crypto.randomUUID(),
@@ -73,30 +75,30 @@ export const menus: Menu[] = [
 ];
 
 export const menuChildren: MenuChildren[] = [
-  {
-    id: crypto.randomUUID(),
-    index: 2,
-    name: '中心介绍',
-    uri: '/info?menu=2&menuchild=0',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 2,
-    name: '现任领导',
-    uri: '/info?menu=2&menuchild=1',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 2,
-    name: '研究方向',
-    uri: '/info?menu=2&menuchild=2',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 2,
-    name: '组织架构',
-    uri: '/info?menu=2&menuchild=3',
-  },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 2,
+  //   name: '中心介绍',
+  //   uri: '/info?menu=2&menuchild=0',
+  // },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 2,
+  //   name: '现任领导',
+  //   uri: '/info?menu=2&menuchild=1',
+  // },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 2,
+  //   name: '研究方向',
+  //   uri: '/info?menu=2&menuchild=2',
+  // },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 2,
+  //   name: '组织架构',
+  //   uri: '/info?menu=2&menuchild=3',
+  // },
 
   {
     id: crypto.randomUUID(),
@@ -167,6 +169,25 @@ export const menuChildren: MenuChildren[] = [
   //   name: '通知公告',
   //   uri: '/info?menu=6&menuchild=1&a=list',
   // },
+
+  {
+    id: crypto.randomUUID(),
+    index: 7,
+    name: '学术交流',
+    uri: '/info?menu=7&menuchild=0&a=list',
+  },
+  {
+    id: crypto.randomUUID(),
+    index: 7,
+    name: '对外开放',
+    uri: '/info?menu=7&menuchild=1&a=list',
+  },
+  {
+    id: crypto.randomUUID(),
+    index: 7,
+    name: '开放基金',
+    uri: '/info?menu=7&menuchild=2&a=list',
+  },
 ];
 
 export const heroDescriptions: string[] = [

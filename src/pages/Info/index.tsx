@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getDoc } from '../../api/fetch';
 
 import { Footer, Header } from '@/components';
-import { Icon } from '@/assets';
+import { Icon1 } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 
 import { pdfjs } from 'react-pdf';
@@ -97,12 +97,19 @@ const Info: React.FC<InfoProps> = () => {
         })
         .catch((error) => console.log('error', error));
     } else {
-      getDoc(`visitor/document?block=${title[0].name}&group=${encodeURI('%')}`)
+      getDoc(`visitor/document?block=${title[0].name}&group=0`)
         .then((result) => {
           console.log(result);
-          if (result.code == 1000) setDocs(result.data.Docs);
-          else {
+          if (result.code == 1000) {
+            setDocs(result.data.Docs);
+            setdocContent(
+              result.data?.Docs && result.data.Docs.length > 0
+                ? result.data.Docs[0].content
+                : null,
+            );
+          } else {
             setDocs(null);
+            setdocContent(null);
           }
         })
         .catch((error) => console.log('error', error));
@@ -124,12 +131,13 @@ const Info: React.FC<InfoProps> = () => {
       <Header />
       <main>
         <div className='topdiv'>
+          {title[0].haveChildren == true && (
           <div className='topbar'>
-            <div className='h'>
-              <img src={Icon} alt='' />
-              <h4>{title[0].name}</h4>
-            </div>
-            <p className='station'>
+              <div className='h'>
+                <img src={Icon1} alt='' />
+                <h4>{title[0].name}</h4>
+              </div>
+              <p className='station'>
               <a href='/home'>首页</a>
               &nbsp;&lt;&nbsp;
               <a href={title[0].uri}>{title[0].name}</a>
@@ -142,23 +150,31 @@ const Info: React.FC<InfoProps> = () => {
         </div>
         <div className='aside'>
           <ul className='menu'>
-            {title[0].haveChildren == true
-              ? list.map((each, index) => {
-                  return (
-                    <a href={each.uri} key={each.id}>
-                      <li
-                        className={
-                          String(index) == menuchild ? 'activeList' : ''
-                        }>
-                        {each.name}
-                      </li>
-                    </a>
-                  );
-                })
-              : ' '}
-          </ul>
-        </div>
-        <div className='content'>
+              {list.map((each, index) => {
+                return (
+                  <a href={each.uri} key={each.id}>
+                    <li
+                      className={
+                        String(index) == menuchild ? 'activeList' : ''
+                      }>
+                      {each.name}
+                    </li>
+                  </a>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        <div
+          className={`content ${
+            title[0].haveChildren == true ? 'withAside' : 'noAside'
+          }`}>
+          {title[0].haveChildren != true && (
+            <div className='sectionHeader'>
+              <img src={Icon1} alt='' />
+              <h4>{title[0].name}</h4>
+            </div>
+          )}
           {a == 'list' ? listRender() : docRender()}
 
           {/*file 只实现了本地文件的加载

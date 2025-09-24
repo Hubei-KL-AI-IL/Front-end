@@ -9,7 +9,7 @@ function App() {
         <Route path='/home/*' element={<Home />} />
         <Route path='/info/*' element={<Info />} />
         {/* if the router not matching */}
-        <Route path='*' element={<Navigate to={'./home'} />} />
+        <Route path='*' element={<Navigate to={'/home'} replace />} />
       </Routes>
     </>
   );
