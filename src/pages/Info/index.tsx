@@ -129,7 +129,7 @@ const Info: React.FC<InfoProps> = () => {
     } else {
       setLoading(false);
     }
-  }, [menu, menuchild, id, title, list, j]);
+  }, [menu, menuchild, id, j]);
 
   const docRender = () => {
     return (

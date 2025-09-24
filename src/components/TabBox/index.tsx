@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDocList } from '@/interface/fetch';
 import { formatDate } from '@/utils/formatDate';
-import { homeIcon_1, news_list } from '@/assets';
+import { homeIcon_1 } from '@/assets';
 import './style.less';
 
 type TabBoxProps = object;
@@ -31,16 +31,15 @@ const TabBox: React.FC<TabBoxProps> = () => {
       }
     };
 
-    // 获取两个分组并合并为“工作动态”
-    Promise.all([
-      fetchGroup('工作动态', '0'),
-      fetchGroup('新闻动态', '0'),
-    ]).then(([news, notice]) => {
-      const merged = [...news, ...notice]
+    // 获取工作动态
+    fetchGroup('工作动态', '0').then((workData) => {
+      const sortedData = workData
         .filter(Boolean)
-        .sort((a, b) => (b.create_at || 0) - (a.create_at || 0))
+        .sort(
+          (a: ListInfo, b: ListInfo) => (b.create_at || 0) - (a.create_at || 0),
+        )
         .slice(0, 8);
-      setWorkData(merged);
+      setWorkData(sortedData);
     });
   }, []);
 
@@ -52,7 +51,6 @@ const TabBox: React.FC<TabBoxProps> = () => {
             return (
               <li className='box_news' key={item.id}>
                 <span className='box_news_wrap'>
-                  <img src={news_list} alt='' />
                   <Link
                     to={`/info?menu=6&a=single&id=${item.id}`}
                     className='news_title'>
