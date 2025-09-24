@@ -5,7 +5,7 @@
   top: 10vh;
   height: 30vh;
   width: 100vw;
-  z-index: -1;
+  z-index: 1;
   background-position: center center;
   background-color: @primary-color-4;
   background-image: url(../../assets/topbg.jpg);
@@ -13,14 +13,15 @@
   background-repeat: no-repeat;
 }
 
-.aside {
-  float: left;
-  margin-top: 2vh;
-  margin-left: 7vw;
-  margin-right: 2vw;
+.topbar {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 7vw 2vh 7vw;
 }
 
-.aside .h {
+.topbar .h {
   background-color: @primary-color-7;
   width: 18vw;
   height: 8vh;
@@ -30,13 +31,21 @@
   display: flex;
   align-items: center;
 }
-.aside .h h4 {
+.topbar .h h4 {
   display: inline-block;
 }
-
-.aside .h img {
+.topbar .h img {
   height: 4.5vw;
 }
+
+.aside {
+  float: left;
+  margin-top: 2vh;
+  margin-left: 7vw;
+  margin-right: 2vw;
+}
+
+// 侧边栏头部已迁移到 .topbar
 
 .menu li {
   list-style: none;
@@ -47,6 +56,8 @@
   background-color: @primary-color-1;
   line-height: 7vh;
   color: @primary-color;
+  width: 15vw;
+
 }
 
 .activeList {
@@ -64,17 +75,20 @@
   min-height: 60vh;
   margin-top: 11vh;
   margin-left: 12.5vh;
-  width: 60vw;
+  width: auto;
+  max-width: 80vw;
+  margin-right: 5vw;
 }
 
 .station {
-  background-color: #f3f4fa;
+  background-color: transparent;
   padding: 1vh;
   font-size: 1vw;
+  color: white;
 }
 
 .station a {
-  color: #444;
+  color: white;
 }
 
 a {
@@ -82,7 +96,7 @@ a {
 }
 
 .content .list a {
-  color: #444;
+  color: white;
 }
 
 .content .list a:hover {
@@ -104,7 +118,7 @@ li {
 }
 .content .list li span {
   float: right;
-  color: #a7a7a7;
+  color: white;
   font-size: 0.7vw;
 }
 
@@ -121,3 +135,4 @@ li {
 .docPage h1 {
   text-align: center;
 }
+

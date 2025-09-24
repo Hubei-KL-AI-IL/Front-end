@@ -155,37 +155,18 @@ export const menuChildren: MenuChildren[] = [
     uri: '/info?menu=5&menuchild=2&a=list',
   },
 
-  {
-    id: crypto.randomUUID(),
-    index: 6,
-    name: '新闻中心',
-    uri: '/info?menu=6&menuchild=0&a=list',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 6,
-    name: '通知公告',
-    uri: '/info?menu=6&menuchild=1&a=list',
-  },
-
-  {
-    id: crypto.randomUUID(),
-    index: 7,
-    name: '学术交流',
-    uri: '/info?menu=7&menuchild=0&a=list',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 7,
-    name: '对外开放',
-    uri: '/info?menu=7&menuchild=1&a=list',
-  },
-  {
-    id: crypto.randomUUID(),
-    index: 7,
-    name: '开放基金',
-    uri: '/info?menu=7&menuchild=2&a=list',
-  },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 6,
+  //   name: '新闻中心',
+  //   uri: '/info?menu=6&menuchild=0&a=list',
+  // },
+  // {
+  //   id: crypto.randomUUID(),
+  //   index: 6,
+  //   name: '通知公告',
+  //   uri: '/info?menu=6&menuchild=1&a=list',
+  // },
 ];
 
 export const heroDescriptions: string[] = [

@@ -6,33 +6,20 @@ import { Footer, Header } from '@/components';
 import { Icon } from '@/assets';
 import { menus, menuChildren } from '@/utils/helpers';
 
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-import example from '../../assets/example.pdf';
+// import example from '../../assets/example.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 import './style.less';
-import { get } from 'http';
-import { type } from 'os';
+// removed unused imports
 
 type InfoProps = object;
 
-type List = {
-  id: string;
-  time: string;
-  content: string;
-};
-
-const lists: List[] = [
-  {
-    id: crypto.randomUUID(),
-    time: '2023-11-2',
-    content: '这里是一条示例',
-  },
-];
+// removed unused demo list
 
 type doc = {
   block: string;
@@ -44,13 +31,13 @@ type doc = {
 };
 
 const Info: React.FC<InfoProps> = () => {
-  const [search, setSearch] = useSearchParams();
-  let menu = search.get('menu');
-  let menuchild = search.get('menuchild');
-  let a = search.get('a');
-  let i = Number(menu);
-  let j = Number(menuchild);
-  let id = search.get('id');
+  const [search] = useSearchParams();
+  const menu = search.get('menu');
+  const menuchild = search.get('menuchild');
+  const a = search.get('a');
+  const i = Number(menu);
+  const j = Number(menuchild);
+  const id = search.get('id');
 
   const [docs, setDocs] = useState<doc[] | null>(null);
 
@@ -84,14 +71,10 @@ const Info: React.FC<InfoProps> = () => {
     return i == menu.index;
   });
 
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  function onLoadSuccess(data: { numPages: number }) {
-    setNumPages(numPages);
-  }
-  const [docId, setdocId] = useState(null);
+  // removed unused pdf states and handlers
   const [docContent, setdocContent] = useState<string | null>(null);
+
+  const showChild = menuchild != 'null' && menuchild != null;
 
   useEffect(() => {
     if (menuchild != null && menuchild != 'null') {
@@ -124,7 +107,7 @@ const Info: React.FC<InfoProps> = () => {
         })
         .catch((error) => console.log('error', error));
     }
-  }, [menu, menuchild]);
+  }, [menu, menuchild, id, j, list, title]);
 
   const docRender = () => {
     return (
@@ -140,12 +123,24 @@ const Info: React.FC<InfoProps> = () => {
     <>
       <Header />
       <main>
-        <div className='topdiv'></div>
-        <div className='aside'>
-          <div className='h'>
-            <img src={Icon} alt='' />
-            <h4>{title[0].name}</h4>
+        <div className='topdiv'>
+          <div className='topbar'>
+            <div className='h'>
+              <img src={Icon} alt='' />
+              <h4>{title[0].name}</h4>
+            </div>
+            <p className='station'>
+              <a href='/home'>首页</a>
+              &nbsp;&lt;&nbsp;
+              <a href={title[0].uri}>{title[0].name}</a>
+              <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
+              <a href={showChild ? list[j].uri : ''}>
+                {showChild ? list[j].name : ''}
+              </a>
+            </p>
           </div>
+        </div>
+        <div className='aside'>
           <ul className='menu'>
             {title[0].haveChildren == true
               ? list.map((each, index) => {
@@ -164,21 +159,6 @@ const Info: React.FC<InfoProps> = () => {
           </ul>
         </div>
         <div className='content'>
-          <p className='station'>
-            <a href='/home'>首页</a>
-            &nbsp;&lt;&nbsp;
-            <a href={title[0].uri}>{title[0].name}</a>
-            <span
-              hidden={menuchild != 'null' && menuchild != null ? false : true}>
-              &nbsp;&lt;&nbsp;
-            </span>
-            <a
-              href={
-                menuchild != 'null' && menuchild != null ? list[j].uri : ''
-              }>
-              {menuchild != 'null' && menuchild != null ? list[j].name : ''}
-            </a>
-          </p>
           {a == 'list' ? listRender() : docRender()}
 
           {/*file 只实现了本地文件的加载
