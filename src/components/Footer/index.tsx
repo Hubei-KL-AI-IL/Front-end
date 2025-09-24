@@ -7,9 +7,9 @@ import { Icon } from '@/assets';
 type FooterProps = object;
 
 const Footer: React.FC<FooterProps> = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // const scrollToTop = () => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // };
 
   return (
     <footer>
@@ -90,17 +90,17 @@ const Footer: React.FC<FooterProps> = () => {
               <p className='contact-item'>电话: 027-67867655</p>
               <p className='contact-item'>邮箱: cs@ccnu.edu.cn</p>
             </div>
-            <div className='qr-code'>
+            {/* <div className='qr-code'>
               <div className='qr-placeholder'>
                 <div className='qr-logo'></div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       {/* 底部信息 */}
-      <div className='footer-bottom'>
+      {/* <div className='footer-bottom'>
         <div className='bottom-left'>
           <span className='url-text'>https://cs.ccnu.edu.cn/shfw/zaks.htm</span>
         </div>
@@ -111,7 +111,7 @@ const Footer: React.FC<FooterProps> = () => {
             </svg>
           </button>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 };

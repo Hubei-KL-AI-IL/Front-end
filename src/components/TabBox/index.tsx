@@ -33,8 +33,8 @@ const TabBox: React.FC<TabBoxProps> = () => {
 
     // 获取两个分组并合并为“工作动态”
     Promise.all([
-      fetchGroup('新闻动态', '新闻中心'),
-      fetchGroup('新闻动态', '通知公告'),
+      fetchGroup('工作动态', '0'),
+      fetchGroup('新闻动态', '0'),
     ]).then(([news, notice]) => {
       const merged = [...news, ...notice]
         .filter(Boolean)
@@ -76,13 +76,13 @@ const TabBox: React.FC<TabBoxProps> = () => {
             <div className='box_header'>
               <ul className='header_info'>
                 <li className='header_title title_active'>
-                  <Link to='/info?menu=7&a=list' className='link_style'>
+                  <Link to='/info?menu=7' className='link_style'>
                     <img src={homeIcon_1} alt='' />
                     <span>工作动态</span>
                   </Link>
                 </li>
               </ul>
-              <Link className='header_more' to='/info?menu7&a=list'>
+              <Link className='header_more' to='/info?menu7'>
                 更多+
               </Link>
             </div>

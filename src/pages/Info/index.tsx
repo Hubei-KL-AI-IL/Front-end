@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getDoc } from '../../api/fetch';
 
@@ -40,6 +40,7 @@ const Info: React.FC<InfoProps> = () => {
   const id = search.get('id');
 
   const [docs, setDocs] = useState<doc[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const listRender = () => {
     return (
@@ -63,13 +64,17 @@ const Info: React.FC<InfoProps> = () => {
     );
   };
 
-  const list = menuChildren.filter((child) => {
-    return i == child.index;
-  });
+  const list = useMemo(() => {
+    return menuChildren.filter((child) => {
+      return i === child.index;
+    });
+  }, [i]);
 
-  const title = menus.filter((menu) => {
-    return i == menu.index;
-  });
+  const title = useMemo(() => {
+    return menus.filter((menu) => {
+      return i === menu.index;
+    });
+  }, [i]);
 
   // removed unused pdf states and handlers
   const [docContent, setdocContent] = useState<string | null>(null);
@@ -77,30 +82,37 @@ const Info: React.FC<InfoProps> = () => {
   const showChild = menuchild != 'null' && menuchild != null;
 
   useEffect(() => {
-    if (menuchild != null && menuchild != 'null') {
-      getDoc(`visitor/document?block=${title[0].name}&group=${list[j].name}`)
+    // 防止在没有必要数据时发送请求
+    if (title.length === 0 || loading) return;
+
+    setLoading(true);
+
+    if (menuchild != null && menuchild != 'null' && list[j]) {
+      getDoc(`visitor/document?block=${title[0]?.name}&group=${list[j]?.name}`)
         .then((result) => {
           console.log(result);
-          if (result.code == 1000) {
+          if (result.code === 1000) {
             setDocs(result.data.Docs);
-            setdocContent(result.data.Docs[0].content);
+            setdocContent(result.data.Docs[0]?.content);
           } else {
             setDocs(null);
             setdocContent(null);
           }
         })
-        .catch((error) => console.log('error', error));
+        .catch((error) => console.log('error', error))
+        .finally(() => setLoading(false));
     } else if (id != null && id != 'null') {
       getDoc(`visitor/document/detail?id=${id}`)
         .then((result) => {
-          setdocContent(result.data.Docs.content);
+          setdocContent(result.data.Docs?.content);
         })
-        .catch((error) => console.log('error', error));
-    } else {
+        .catch((error) => console.log('error', error))
+        .finally(() => setLoading(false));
+    } else if (title[0]?.name) {
       getDoc(`visitor/document?block=${title[0].name}&group=0`)
         .then((result) => {
           console.log(result);
-          if (result.code == 1000) {
+          if (result.code === 1000) {
             setDocs(result.data.Docs);
             setdocContent(
               result.data?.Docs && result.data.Docs.length > 0
@@ -112,9 +124,12 @@ const Info: React.FC<InfoProps> = () => {
             setdocContent(null);
           }
         })
-        .catch((error) => console.log('error', error));
+        .catch((error) => console.log('error', error))
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-  }, [menu, menuchild, id, j, list, title]);
+  }, [menu, menuchild, id, title, list, j]);
 
   const docRender = () => {
     return (
@@ -131,31 +146,35 @@ const Info: React.FC<InfoProps> = () => {
       <Header />
       <main>
         <div className='topdiv'>
-          {title[0].haveChildren == true && (
-          <div className='topbar'>
-              <div className='h'>
-                <img src={Icon1} alt='' />
-                <h4>{title[0].name}</h4>
+          {title[0]?.haveChildren === true && (
+            <>
+              <div className='topbar'>
+                <div className='h'>
+                  <img src={Icon1} alt='' />
+                  <h4>{title[0]?.name}</h4>
+                </div>
+                <p className='station'>
+                  <a href='/home'>首页</a>
+                  &nbsp;&lt;&nbsp;
+                  <a href={title[0]?.uri}>{title[0]?.name}</a>
+                  <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
+                  <a href={showChild ? list[j]?.uri : ''}>
+                    {showChild ? list[j]?.name : ''}
+                  </a>
+                </p>
               </div>
-              <p className='station'>
-              <a href='/home'>首页</a>
-              &nbsp;&lt;&nbsp;
-              <a href={title[0].uri}>{title[0].name}</a>
-              <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
-              <a href={showChild ? list[j].uri : ''}>
-                {showChild ? list[j].name : ''}
-              </a>
-            </p>
-          </div>
+            </>
+          )}
         </div>
-        <div className='aside'>
-          <ul className='menu'>
+        {title[0]?.haveChildren === true && (
+          <div className='aside'>
+            <ul className='menu'>
               {list.map((each, index) => {
                 return (
                   <a href={each.uri} key={each.id}>
                     <li
                       className={
-                        String(index) == menuchild ? 'activeList' : ''
+                        String(index) === menuchild ? 'activeList' : ''
                       }>
                       {each.name}
                     </li>
@@ -167,15 +186,15 @@ const Info: React.FC<InfoProps> = () => {
         )}
         <div
           className={`content ${
-            title[0].haveChildren == true ? 'withAside' : 'noAside'
+            title[0]?.haveChildren === true ? 'withAside' : 'noAside'
           }`}>
-          {title[0].haveChildren != true && (
+          {title[0]?.haveChildren !== true && (
             <div className='sectionHeader'>
               <img src={Icon1} alt='' />
-              <h4>{title[0].name}</h4>
+              <h4>{title[0]?.name}</h4>
             </div>
           )}
-          {a == 'list' ? listRender() : docRender()}
+          {a === 'list' ? listRender() : docRender()}
 
           {/*file 只实现了本地文件的加载
           如果使用url 会出现跨域问题..
