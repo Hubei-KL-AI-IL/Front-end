@@ -52,7 +52,7 @@ const TabBox: React.FC<TabBoxProps> = () => {
               <li className='box_news' key={item.id}>
                 <span className='box_news_wrap'>
                   <Link
-                    to={`/info?menu=6&a=single&id=${item.id}`}
+                    to={`/info?menu=7&a=single&id=${item.id}`}
                     className='news_title'>
                     {item.title}
                   </Link>

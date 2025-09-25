@@ -146,25 +146,23 @@ const Info: React.FC<InfoProps> = () => {
       <Header />
       <main>
         <div className='topdiv'>
-          {title[0]?.haveChildren === true && (
-            <>
-              <div className='topbar'>
-                <div className='h'>
-                  <img src={Icon1} alt='' />
-                  <h4>{title[0]?.name}</h4>
-                </div>
-                <p className='station'>
-                  <a href='/home'>首页</a>
-                  &nbsp;&lt;&nbsp;
-                  <a href={title[0]?.uri}>{title[0]?.name}</a>
-                  <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
-                  <a href={showChild ? list[j]?.uri : ''}>
-                    {showChild ? list[j]?.name : ''}
-                  </a>
-                </p>
+          <>
+            <div className='topbar'>
+              <div className='h'>
+                <img src={Icon1} alt='' />
+                <h4>{title[0]?.name}</h4>
               </div>
-            </>
-          )}
+              <p className='station'>
+                <a href='/home'>首页</a>
+                &nbsp;&lt;&nbsp;
+                <a href={title[0]?.uri}>{title[0]?.name}</a>
+                <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
+                <a href={showChild ? list[j]?.uri : ''}>
+                  {showChild ? list[j]?.name : ''}
+                </a>
+              </p>
+            </div>
+          </>
         </div>
         {title[0]?.haveChildren === true && (
           <div className='aside'>
