@@ -63,7 +63,7 @@ export const menus: Menu[] = [
     index: 7,
     haveChildren: true,
     name: '工作动态',
-    uri: '/info?menu=7',
+    uri: '/info?menu=7&a=list',
   },
   // {
   //   id: crypto.randomUUID(),
