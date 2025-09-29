@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { getDoc } from '../../api/fetch';
 
 import { Footer, Header } from '@/components';
@@ -49,11 +49,11 @@ const Info: React.FC<InfoProps> = () => {
           docs.map((list, index) => {
             return (
               <li key={index}>
-                <a
-                  href={`/info?menu=${menu}&menuchild=${menuchild}&a=single&id=${list.id}`}
+                <Link
+                  to={`/info?menu=${menu}&menuchild=${menuchild}&a=single&id=${list.id}`}
                   target='_blank'>
                   {list.title}
-                </a>
+                </Link>
               </li>
             );
           })
@@ -153,13 +153,13 @@ const Info: React.FC<InfoProps> = () => {
                 <h4>{title[0]?.name}</h4>
               </div>
               <p className='station'>
-                <a href='/home'>首页</a>
+                <Link to='/home'>首页</Link>
                 &nbsp;&lt;&nbsp;
-                <a href={title[0]?.uri}>{title[0]?.name}</a>
+                <Link to={title[0]?.uri || ''}>{title[0]?.name}</Link>
                 <span hidden={!showChild}>&nbsp;&lt;&nbsp;</span>
-                <a href={showChild ? list[j]?.uri : ''}>
+                <Link to={showChild ? list[j]?.uri || '' : ''}>
                   {showChild ? list[j]?.name : ''}
-                </a>
+                </Link>
               </p>
             </div>
           </>
@@ -169,14 +169,14 @@ const Info: React.FC<InfoProps> = () => {
             <ul className='menu'>
               {list.map((each, index) => {
                 return (
-                  <a href={each.uri} key={each.id}>
+                  <Link to={each.uri} key={each.id}>
                     <li
                       className={
                         String(index) === menuchild ? 'activeList' : ''
                       }>
                       {each.name}
                     </li>
-                  </a>
+                  </Link>
                 );
               })}
             </ul>
