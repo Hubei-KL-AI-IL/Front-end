@@ -1,4 +1,5 @@
-const preurl = 'http://60.205.12.92:30000';
+// const preurl = 'http://60.205.12.92:30000';
+const preurl = 'https://api.ailab.booling.cn';
 
 // GET
 export async function getDocList({
@@ -16,9 +17,7 @@ export async function getDocList({
     // 使用 await 等待异步操作完成
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+      headers: {},
       redirect: 'follow',
       mode: 'cors',
     });
